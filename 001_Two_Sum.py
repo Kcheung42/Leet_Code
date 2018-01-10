@@ -6,7 +6,7 @@
 #    By: kcheung <kcheung@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/20 14:05:46 by kcheung           #+#    #+#              #
-#    Updated: 2017/12/20 14:08:20 by kcheung          ###   ########.fr        #
+#    Updated: 2018/01/09 19:40:52 by kcheung          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,16 @@ return [0, 1].
 '''
 
 class Solution:
-    def twoSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
+	def twoSum(self, nums, target):
+		if len(nums) == 0:
+			return False
+		for i in range(len(nums)):
+			if nums[i] in dict:
+				return (dict[nums[i]], i)
+			else:
+				dict[target - nums[i]] = i
+
+s = Solution()
+nums = [2,7,11,15]
+target = 9
+print(s.twoSum(nums,target))
