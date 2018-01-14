@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    002.Add_Two_Numbers.py                             :+:      :+:    :+:    #
+#    002_Add_Two_Numbers.py                             :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: kcheung <kcheung@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/20 14:55:08 by kcheung           #+#    #+#              #
-#    Updated: 2018/01/09 19:49:26 by kcheung          ###   ########.fr        #
+#    Updated: 2018/01/10 13:12:46 by kcheung          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ class Solution:
 			if resultList is None:
 				resultList = ListNode(sum % 10)
 			else:
-				addNode(resultList, sum % 10)
+				self.addNode(resultList, sum % 10)
 			sum //= 10
 		return resultList
 	
@@ -57,14 +57,15 @@ class Solution:
 			digit_place *= 10
 		return (int(val))
 
-def addNode(head, val):
-	if head is None:
-		head = ListNode(val)
-	else:
-		cur = head
-		while cur.next:
-			cur = cur.next
-		cur.next = ListNode(val)
+	def addNode(self, head, val):
+		if head is None:
+			head = ListNode(val)
+		else:
+			cur = head
+			while cur.next:
+				cur = cur.next
+			cur.next = ListNode(val)
+
 
 # test code
 l1 = ListNode(2)

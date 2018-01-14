@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    003_Longest_Substring_Without_Repeating_C          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: kcheung <kcheung@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/01/10 11:13:03 by kcheung           #+#    #+#              #
+#    Updated: 2018/01/11 10:57:37 by kcheung          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 '''
 Given a string, find the length of the longest substring without repeating characters.
 Examples:
@@ -16,13 +28,15 @@ class Solution:
 		:type s: str
 		:rtype: int
 		"""
+		if s == "" :
+			return 0
 		n = len(s)
 		cur_len = 1
 		max_len = 1
 		prev_index = 0
 		i = 0
-		
 		visited = [-1] * 256
+
 		visited[ord(s[0])] = 0
 		for i in range(1,n):
 			prev_index = visited[ord(s[i])]
@@ -39,7 +53,7 @@ class Solution:
 			max_len = cur_len
 		return (max_len)
 
-
 s = Solution()
-arr = 'GEEKSFORGEEKS'
+# arr = 'GEEKSFORGEEKS'
+arr = ''
 print "Length of lis is", s.lengthOfLongestSubstring(arr)
