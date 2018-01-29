@@ -6,7 +6,7 @@
 #    By: kcheung <kcheung@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/10 11:13:03 by kcheung           #+#    #+#              #
-#    Updated: 2018/01/11 10:57:37 by kcheung          ###   ########.fr        #
+#    Updated: 2018/01/28 19:00:57 by kcheung          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,13 +47,13 @@ class Solution:
 			else:
 				if cur_len > max_len:
 					max_len = cur_len
-				cur_len = i - prev_index 
+				cur_len = 1
 			visited[ord(s[i])] = i
 		if cur_len > max_len:
 			max_len = cur_len
 		return (max_len)
 
 s = Solution()
-# arr = 'GEEKSFORGEEKS'
-arr = ''
-print "Length of lis is", s.lengthOfLongestSubstring(arr)
+arr = 'GEEKSFORGEEKS'
+# arr = ''
+print("Length of lis is", s.lengthOfLongestSubstring(arr))

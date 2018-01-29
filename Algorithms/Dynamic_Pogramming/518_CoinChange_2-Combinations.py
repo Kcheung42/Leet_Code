@@ -6,7 +6,7 @@
 #    By: kcheung <kcheung@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 12:15:39 by kcheung           #+#    #+#              #
-#    Updated: 2018/01/12 11:30:10 by kcheung          ###   ########.fr        #
+#    Updated: 2018/01/15 21:44:57 by kcheung          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,6 @@ class Solution: #recursion + memoization
 		key = str(target) + '-' + str(index)
 		if key in hashMap:
 			return hashMap[key]
-
 		coinsValue = 0
 		ways = 0
 		while(coinsValue <= target):
@@ -48,22 +47,29 @@ class Solution: #recursion + memoization
 
 class Solution2: #Tabulation
 	def change(self, amount, coins):
-		dp = [1] * (amount + 1)
+		dp = [0] * (amount + 1)
 		dp[0] = 1
-
 		for i in range(len(coins)):
 			for j in range(1,amount):
 				if j >= coins[i]:
-					dp[i] = dp[i - coins[i]]
+					dp[j] += dp[j - coins[i]]
 		return dp[-1]
 
+
 #Test Code
-s = Solution()
-s2= Solution()
+s = Solution2()
 coins = [1,2,5]
 target = 5
-coins = [1,2]
-target = 5000
+# coins = [1,2]
+# target = 5000
 print(s.change(target, coins))
-print(s2.change(target, coins))
 
+# class Solution2:
+# 	def change(self, amount, coins):
+# 		combinations = [0] * amount
+# 		combinations[0] = 1
+# 		
+# 		for i in range(len(coins)):
+# 			for j in range(amount):
+# 				if (j >= coins[i]):
+# 					combinations[j] += combinations[j - coins[i]]
