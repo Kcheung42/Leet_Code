@@ -6,7 +6,7 @@
 #    By: kcheung <kcheung@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/21 15:52:48 by kcheung           #+#    #+#              #
-#    Updated: 2018/01/28 21:34:40 by kcheung          ###   ########.fr        #
+#    Updated: 2018/01/29 13:14:59 by kcheung          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,6 @@ class Solution(object):
 		nums = sorted(nums)
 		result = []
 		i = 0
-		print(nums)
 		while i < len(nums) - 2: #i 0 -> 3 inclusive
 			if i == 0 or nums[i] != nums[i-1]:
 				j = i + 1

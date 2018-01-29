@@ -1,13 +1,13 @@
 
 
 # Datastructures
-* [Array](https://github.com/RamboBambo/Leet_Code#Arrays)
+* [Array](https://github.com/RamboBambo/Leet_Code#array)
  
 # Algorithms
-* [Dynamic Programming](https://github.com/RamboBambo/Leet_Code#Dynamic Programming)
-* [Greedy](https://github.com/RamboBambo/Leet_Code#Greedy)
-* [String](https://github.com/RamboBambo/Leet_Code#String)
-* [Sorting](https://github.com/RamboBambo/Leet_Code#Sorting)
+* [Dynamic Programming](https://github.com/RamboBambo/Leet_Code#dynamic-programming)
+* [Greedy](https://github.com/RamboBambo/Leet_Code#greedy)
+* [String](https://github.com/RamboBambo/Leet_Code#string)
+* [Sorting](https://github.com/RamboBambo/Leet_Code#sorting)
 
 ## Array
 | Dificulty | #   | Title           | Solution                                                                                        | Time | Space |
@@ -36,10 +36,10 @@
 | Easy      | 088 | [Two Sum](addLink) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Sorting/088_Merge_sorgted_Array.py) |      |       |
 
 ## Dynamic_Programming
-| Dificulty | #   | Title                              | Solution                                                                                                                   | Time | Space |
-|-----------|-----|------------------------------------|----------------------------------------------------------------------------------------------------------------------------|------|-------|
-| Easy      | 088 | [Climbing Stairs](addLink)         | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/070_Climbing_Stairs.py)        |      |       |
-| Easy      | 198 | [House Robber](addLink)            | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/198_House_Robber.py)           |      |       |
-| Medium    | 332 | [CoinChange](addLink)              | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/332_CoinChange.py)             |      |       |
-| Medium    | 518 | [CoinChange 2](addLink)            | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/518_CoinChange_2.py)           |      |       |
-| Medium    | 712 | [Minimum ASCII Deleteion](addLink) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/712_Minimum_ASCII_Deletion.py) |      |       |
+| Dificulty | #   | Title                              | Solution                                                                                                                      | Time | Space |
+|-----------|-----|------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|------|-------|
+| Easy      | 088 | [Climbing Stairs](addLink)         | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/070_Climbing_Stairs.py)           |      |       |
+| Easy      | 198 | [House Robber](addLink)            | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/198_House_Robber.py)              |      |       |
+| Medium    | 332 | [CoinChange](addLink)              | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/332_CoinChange-Minimum.py)        |      |       |
+| Medium    | 518 | [CoinChange 2](addLink)            | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/518_CoinChange_2-Combinations.py) |      |       |
+| Medium    | 712 | [Minimum ASCII Deleteion](addLink) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/712_Minimum_ASCII_Deletion.py)    |      |       |
