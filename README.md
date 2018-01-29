@@ -35,7 +35,7 @@
 |-----------|-----|--------------------|-------------------------------------------------------------------------------------------------------------|------|-------|
 | Easy      | 088 | [Two Sum](addLink) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Sorting/088_Merge_sorgted_Array.py) |      |       |
 
-## Dynamic_Programming
+## Dynamic Programming
 | Dificulty | #   | Title                              | Solution                                                                                                                      | Time | Space |
 |-----------|-----|------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|------|-------|
 | Easy      | 088 | [Climbing Stairs](addLink)         | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/070_Climbing_Stairs.py)           |      |       |
