@@ -30,12 +30,17 @@
 | Easy      | 020 | [Valid Parentheses](https://leetcode.com/problems/valid-parentheses/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Linked_List/020_Valid_Parenthesis.py) |      |       |
 
 ## Hash Table
-| Dificulty | # | Title | Solution | Time | Space |
-|-----------|---|-------|----------|------|-------|
-| Easy      | 001 | [Two Sum](https://leetcode.com/problems/two-sum/description/)| [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Hash_Table/001_Two_Sum.py)                                        |      |       |
-| Easy      | 167 | [Two_Sum_II](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/)| [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Hash_Table/167_Two_Sum_II.py)                                     |      |       |
-| Medium    | 003 | [Longest Substring Without Repeat](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Hash_Table/003_Longest_Substring_Without_Repeating_Characters.py) |||
+| Dificulty | #   | Title                                                                                                                         | Solution                                                                                                                                       | Time | Space |
+|-----------|-----|-------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|------|-------|
+| Easy      | 001 | [Two Sum](https://leetcode.com/problems/two-sum/description/)                                                                 | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Hash_Table/001_Two_Sum.py)                                        |      |       |
+| Easy      | 167 | [Two_Sum_II](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/)                                     | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Hash_Table/167_Two_Sum_II.py)                                     |      |       |
+| Medium    | 003 | [Longest Substring Without Repeat](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Hash_Table/003_Longest_Substring_Without_Repeating_Characters.py) |      |       |
 - 
+## Binary Seach Tree
+| Dificulty | #   | Title                                                                                                 | Solution                                                                                                                            | Time | Space |
+|-----------|-----|-------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|------|-------|
+| Medium    | 098 | [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Binary_Search_Tree/098_Validate_Binary_Search_Tree.py) |      |       |
+
 ## Recursion
 | Dificulty | #   | Title                                                                                                    | Solution                                                                                                                | Time | Space |
 |-----------|-----|----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|------|-------|
