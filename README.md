@@ -37,9 +37,9 @@
 | Medium    | 003 | [Longest Substring Without Repeat](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Hash_Table/003_Longest_Substring_Without_Repeating_Characters.py) |||
 - 
 ## Recursion
-| Dificulty | #   | Title                                                                                                    | Solution                                                                                                               | Time | Space |
-|-----------|-----|----------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|------|-------|
-| Medium    | 095 | [Unique Binary Search Tree II](https://leetcode.com/problems/unique-binary-search-trees-ii/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Recursion/095_Unique_Binary_Search_Tree_II.py) |      |       |
+| Dificulty | #   | Title                                                                                                    | Solution                                                                                                                | Time | Space |
+|-----------|-----|----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|------|-------|
+| Medium    | 095 | [Unique Binary Search Tree II](https://leetcode.com/problems/unique-binary-search-trees-ii/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Recursion/095_Unique_Binary_Search_Trees_II.py) |      |       |
 
 ## Sorting
 | Dificulty | #   | Title       | Solution                                                                                                    | Time | Space |
