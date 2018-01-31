@@ -2,12 +2,19 @@
 
 ### Datastructures
 * [Array](https://github.com/RamboBambo/Leet_Code#array)
+* [Binary Search Tree](https://github.com/RamboBambo/Leet_Code#binary-search-tree)
+* [Hash Table](https://github.com/RamboBambo/Leet_Code#hash-table)
+* [Heap](https://github.com/RamboBambo/Leet_Code#Heap)
+* [Linked List](https://github.com/RamboBambo/Leet_Code#linked-list)
+* [Queue](https://github.com/RamboBambo/Leet_Code#queue)
+* [Stack](https://github.com/RamboBambo/Leet_Code#stack)
  
 ### Algorithms
 * [Dynamic Programming](https://github.com/RamboBambo/Leet_Code#dynamic-programming)
 * [Greedy](https://github.com/RamboBambo/Leet_Code#greedy)
-* [String](https://github.com/RamboBambo/Leet_Code#string)
+* [Recursion](https://github.com/RamboBambo/Leet_Code#recursion)
 * [Sorting](https://github.com/RamboBambo/Leet_Code#sorting)
+* [String](https://github.com/RamboBambo/Leet_Code#string)
 
 ## Array
 | Dificulty | #   | Title                                                                   | Solution                                                                                                | Time | Space |
@@ -19,7 +26,7 @@
 | Dificulty | # | Title | Solution | Time | Space |
 |-----------|---|-------|----------|------|-------|
 
-## LinkedList
+## Linked List
 | Dificulty | #   | Title                                                                         | Solution                                                                                                         | Time | Space |
 |-----------|-----|-------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|------|-------|
 | Medium    | 002 | [Add Two Numbers](https://leetcode.com/problems/add-two-numbers/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Linked_List/002_Add_Two_Numbers.py) |      |       |
@@ -35,7 +42,7 @@
 | Easy      | 001 | [Two Sum](https://leetcode.com/problems/two-sum/description/)                                                                 | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Hash_Table/001_Two_Sum.py)                                        |      |       |
 | Easy      | 167 | [Two_Sum_II](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/)                                     | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Hash_Table/167_Two_Sum_II.py)                                     |      |       |
 | Medium    | 003 | [Longest Substring Without Repeat](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Hash_Table/003_Longest_Substring_Without_Repeating_Characters.py) |      |       |
-- 
+ 
 ## Binary Seach Tree
 | Dificulty | #   | Title                                                                                                     | Solution                                                                                                                              | Time | Space |
 |-----------|-----|-----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|------|-------|
