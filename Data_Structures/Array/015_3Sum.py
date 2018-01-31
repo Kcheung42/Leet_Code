@@ -6,7 +6,7 @@
 #    By: kcheung <kcheung@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/21 15:52:48 by kcheung           #+#    #+#              #
-#    Updated: 2018/01/29 13:14:59 by kcheung          ###   ########.fr        #
+#    Updated: 2018/01/29 20:01:56 by kcheung          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,15 @@ class Solution(object):
 							k -= 1
 			i += 1
 		return result
+
+class Solution(object):
+	def threeSum(self, nums):
+		nums = sorted(nums)
+		result = []
+		i = 0
+		while i < len(nums) - 2:
+			j = i + 1
+			k = j + 1
 
 s = Solution()
 a = [-1,0,1,2,-1,-4]
