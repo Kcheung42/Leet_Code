@@ -37,9 +37,9 @@
 | Medium    | 003 | [Longest Substring Without Repeat](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Hash_Table/003_Longest_Substring_Without_Repeating_Characters.py) |      |       |
 - 
 ## Binary Seach Tree
-| Dificulty | #   | Title                                                                                                 | Solution                                                                                                                            | Time | Space |
-|-----------|-----|-------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|------|-------|
-| Medium    | 098 | [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Binary_Search_Tree/098_Validate_Binary_Search_Tree.py) |      |       |
+| Dificulty | #   | Title                                                                                                 | Solution                                                                                             | Time | Space |
+|-----------|-----|-------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|------|-------|
+| Medium    | 098 | [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Binary_Search_Tree/.py) |      |       |
 
 ## Recursion
 | Dificulty | #   | Title                                                                                                    | Solution                                                                                                                | Time | Space |
