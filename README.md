@@ -40,12 +40,12 @@
 | Dificulty | #   | Title                                                                                                     | Solution                                                                                                                              | Time | Space |
 |-----------|-----|-----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|------|-------|
 | Medium    | 094 | [Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Binary_Search_Tree/094_Binary_Tree_Inorder_Traversal.py) |      |       |
-| Medium    | 098 | [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/description/)     | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Binary_Search_Tree/.py)                                  |      |       |
+| Medium    | 098 | [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/description/)     | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Binary_Search_Tree/098_Validate_Binary_Tree.py)          |      |       |
 
 ## Recursion
-| Dificulty | #   | Title                                                                                                    | Solution                                                                                                               | Time | Space |
-|-----------|-----|----------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|------|-------|
-| Medium    | 098 | [Unique Binary Search Tree II](https://leetcode.com/problems/unique-binary-search-trees-ii/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Recursion/095_Unique_Binary_Search_Tree_II.py) |      |       |
+| Dificulty | #   | Title                                                                                                    | Solution                                                                                                                | Time | Space |
+|-----------|-----|----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|------|-------|
+| Medium    | 095 | [Unique Binary Search Tree II](https://leetcode.com/problems/unique-binary-search-trees-ii/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Recursion/095_Unique_Binary_Search_Trees_II.py) |      |       |
 
 ## Sorting
 | Dificulty | #   | Title       | Solution                                                                                                    | Time | Space |
