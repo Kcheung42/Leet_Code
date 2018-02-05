@@ -50,9 +50,9 @@
 | Medium    | 098 | [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/description/)     | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Binary_Search_Tree/098_Validate_Binary_Tree.py)          |      |       |
 
 ## Heap
-| Dificulty | #   | Title                                                                             | Solution                                                                                                    | Time | Space |
-|-----------|-----|-----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|------|-------|
-| Medium    | 313 | [Super Ugly Number](https://leetcode.com/problems/valid-parentheses/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Heap/313_Super_Ugly_Number.py) |      |       |
+| Dificulty | #   | Title                 | Solution                                                                                                    | Time | Space |
+|-----------|-----|-----------------------|-------------------------------------------------------------------------------------------------------------|------|-------|
+| Medium    | 313 | [Super Ugly Number](https://leetcode.com/problems/super-ugly-number/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Heap/313_Super_Ugly_Number.py) |      |       |
 
 ## Recursion
 | Dificulty | #   | Title                                                                                                                                                      | Solution                                                                                                                                             | Time | Space |
