@@ -1,35 +1,32 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    105_construct_binary_tree_from_inorder_an          :+:      :+:    :+:    #
+#    105_construct_binary_tree_from_preorder_a          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: kcheung <kcheung@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/30 23:44:26 by kcheung           #+#    #+#              #
-#    Updated: 2018/01/31 15:59:57 by kcheung          ###   ########.fr        #
+#    Updated: 2018/01/31 16:16:49 by kcheung          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-'''
-Given inorder and preorder traversal of a tree, construct the binary tree.
-
-Note:
-You may assume that duplicates do not exist in the tree.
-
-For example, given
-
-inorder = [9,3,15,20,7]
-preorder = [3,9,20,15,7]
-
-Return the following binary tree:
-
-    3
-   / \
-  9  20
-    /  \
-   15   7
-
-'''
+# Given inorder and preorder traversal of a tree, construct the binary tree.
+#
+# Note:
+# You may assume that duplicates do not exist in the tree.
+#
+# For example, given
+#
+# inorder = [9,3,15,20,7]
+# preorder = [3,9,20,15,7]
+#
+# Return the following binary tree:
+#
+#     3
+#    / \
+#   9  20
+#     /  \
+#    15   7
 
 # Definition for a binary tree node.
 class TreeNode(object):
@@ -63,14 +60,14 @@ class Solution(object):
 		for i,val in enumerate(inorder):
 			lookup[val] = i
 		return(self.buildTreeRecur(preorder, inorder,lookup, 0, n-1))
-	
+
 def printInorder(root):
 	if root is None:
 		return
 	printInorder(root.left)
 	print(root.val, end=" ")
 	printInorder(root.right)
-	
+
 def printPreorder(root):
 	if root is None:
 		return

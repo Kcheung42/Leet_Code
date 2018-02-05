@@ -11,8 +11,8 @@ class Board:
 			int('001001001',2),
 			int('010010010',2),
 			int('100100100',2),
-			int('100010001',2),
 			int('001010100',2),
+			int('100010001',2),
 		])
 
 	def display(self, p1, p2):
@@ -34,8 +34,8 @@ class Board:
 		print("Layout: Use NumberPad")
 	
 	def isWinner(self, player):
-		for s in self.winPath:
-			self.winner = player if player.board & s == s else None
+		for w in self.winPath:
+			self.winner = player if player.board & w == w else None
 			if self.winner:
 				print("We have a Winner!! Player {}".format(player.symb))
 				return
@@ -53,7 +53,7 @@ class Board:
 			player_now, player_wait = player_wait, player_now
 
 class HumanPlayer(Board):
-	def __init__(self, char, board):
+	def __init__(self, char):
 		super().__init__()
 		self.board = 0
 		self.symb = char
@@ -76,14 +76,14 @@ class HumanPlayer(Board):
 					print("ERROR:Please choose correct Cell format")
 
 class AI(Board):
-	def __init__(self, char, board):
+	def __init__(self, char):
 		super().__init__()
 		self.board = 0
 		self.symb = char
 
 	def isBlock(self, board):
-		for s in self.winPath:
-			if board & s == s:
+		for w in self.winPath:
+			if board & w == w:
 				return True
 		return False
 
@@ -114,9 +114,9 @@ class AI(Board):
 
 def main():
 	b = Board()
-	human1 = HumanPlayer('X', b)
-	human2 = HumanPlayer('O', b)
-	comp = AI('@', b)
+	human1 = HumanPlayer('X')
+	human2 = HumanPlayer('O')
+	comp = AI('@')
 	while True:
 		try:
 			val = int(input("Choose Opponent: (1)Computer (2)Human:"))
@@ -134,3 +134,4 @@ def main():
 
 if __name__ == "__main__":
 	main()
+
