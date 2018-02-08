@@ -27,9 +27,10 @@
 |-----------|---|-------|----------|------|-------|
 
 ## Linked List
-| Dificulty | #   | Title                                                                         | Solution                                                                                                         | Time | Space |
-|-----------|-----|-------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|------|-------|
-| Medium    | 002 | [Add Two Numbers](https://leetcode.com/problems/add-two-numbers/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Linked_List/002_Add_Two_Numbers.py) |      |       |
+| Dificulty | #   | Title                                                                                   | Solution                                                                                                         | Time | Space |
+|-----------|-----|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|------|-------|
+| Medium    | 002 | [Add Two Numbers](https://leetcode.com/problems/add-two-numbers/description/)           | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Linked_List/002_Add_Two_Numbers.py) |      |       |
+| Medium    | 086 | [Partition List Two Numbers](https://leetcode.com/problems/partition-list/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Linked_List/086_Partition_List.py)  |      |       |
 
 ## Stack
 | Dificulty | #   | Title                                                                             | Solution                                                                                                           | Time | Space |
