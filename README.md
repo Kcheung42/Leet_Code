@@ -69,13 +69,13 @@
 | Easy      | 088 | [Two Sum]() | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Sorting/088_Merge_sorgted_Array.py?ts=4) |      |       |
       
 ## Dynamic Programming
- | Dificulty | #   | Title                                                                    | Solution                                                                                                                          | Time | Space |
- |-----------|-----|--------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|------|-------|
- | Easy      | 088 | [Climbing Stairs]()                                                      | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algor.py?ts=4ithms/Dynamic_Programming/070_Climbing_Stairs)          |      |       |
- | Easy      | 198 | [House Robber]()                                                         | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Al.py?ts=4ithms/Dynamic_Programming/198_House_Robber.py)             |      |       |
- | Medium    | 332 | [CoinChange](https://leetcode.com/problems/coin-change/description/)     | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/332_CoinChange-Minimum.py?ts=4)       |      |       |
- | Medium    | 518 | [CoinChange 2](https://leetcode.com/problems/coin-change-2/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/518_CoinChange_2-Combinations.py?ts=4 |      |       |
- | Medium    | 712 | [Minimum ASCII Deleteion]()                                              | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/D.py?ts=4mic_Programming/712_Minimum_ASCII_Deletion.py)   |      |       |
+ | Dificulty | #   | Title                                                                    | Solution                                                                                                                           | Time | Space |
+ |-----------|-----|--------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|------|-------|
+ | Easy      | 088 | [Climbing Stairs]()                                                      | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algor.py?ts=4ithms/Dynamic_Programming/070_Climbing_Stairs)           |      |       |
+ | Easy      | 198 | [House Robber]()                                                         | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Al.py?ts=4ithms/Dynamic_Programming/198_House_Robber.py)              |      |       |
+ | Medium    | 332 | [CoinChange](https://leetcode.com/problems/coin-change/description/)     | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/332_CoinChange-Minimum.py?ts=4)        |      |       |
+ | Medium    | 518 | [CoinChange 2](https://leetcode.com/problems/coin-change-2/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/518_CoinChange_2-Combinations.py?ts=4) |      |       |
+ | Medium    | 712 | [Minimum ASCII Deleteion]()                                              | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/D.py?ts=4mic_Programming/712_Minimum_ASCII_Deletion.py)    |      |       |
 
 ## Design
 | Dificulty | #   | Title           | Solution                                                                                               | Time | Space |
