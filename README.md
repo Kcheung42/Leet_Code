@@ -17,10 +17,11 @@
 * [String](https://github.com/RamboBambo/Leet_Code#string)
 
 ## Array
-| Dificulty | #   | Title                                                                   | Solution                                                                                                | Time | Space |
-|-----------|-----|-------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|------|-------|
-| Medium    | 015 | [3Sum](https://leetcode.com/problems/3sum/description/)                 | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Array/015_3Sum.py)         |      |       |
-| Medium    | 016 | [3Sum_Closest](https://leetcode.com/problems/3sum-closest/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Array/016_3Sum_Closest.py) |      |       |
+| Dificulty | #   | Title                                                                    | Solution                                                                                                 | Time | Space |
+|-----------|-----|--------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|------|-------|
+| Medium    | 015 | [3Sum](https://leetcode.com/problems/3sum/description/)                  | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Array/015_3Sum.py)          |      |       |
+| Medium    | 016 | [3Sum_Closest](https://leetcode.com/problems/3sum-closest/description/)  | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Array/016_3Sum_Closest.py)  |      |       |
+| Medium    | 048 | [Rotate Matrix](https://leetcode.com/problems/rotate-image/description/) | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Data_Structures/Array/048_Rotate_Matrix.py) |      |       |
 
 ## String
 | Dificulty | # | Title | Solution | Time | Space |
@@ -72,8 +73,8 @@
  |-----------|-----|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------|------|-------|
  | Easy      | 088 | [Climbing Stairs]()         | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/070_Climbing_Stairs.py)           |      |       |
  | Easy      | 198 | [House Robber]()            | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/198_House_Robber.py)              |      |       |
- | Medium    | 332 | [CoinChange]()              | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/332_CoinChange-Minimum.py)        |      |       |
- | Medium    | 518 | [CoinChange 2]()            | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/518_CoinChange_2-Combinations.py) |      |       |
+ | Medium    | 332 | [CoinChange](https://leetcode.com/problems/coin-change/description/)              | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/332_CoinChange-Minimum.py)        |      |       |
+ | Medium    | 518 | [CoinChange 2](https://leetcode.com/problems/coin-change-2/description/)            | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/518_CoinChange_2-Combinations.py) |      |       |
  | Medium    | 712 | [Minimum ASCII Deleteion]() | [Python](https://github.com/RamboBambo/Leet_Code/blob/master/Algorithms/Dynamic_Programming/712_Minimum_ASCII_Deletion.py)    |      |       |
 
 ## Design

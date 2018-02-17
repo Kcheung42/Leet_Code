@@ -6,7 +6,7 @@
 #    By: kcheung <kcheung@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 12:15:39 by kcheung           #+#    #+#              #
-#    Updated: 2018/01/15 21:44:57 by kcheung          ###   ########.fr        #
+#    Updated: 2018/02/16 15:15:24 by kcheung          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ class Solution2: #Tabulation
 		dp = [0] * (amount + 1)
 		dp[0] = 1
 		for i in range(len(coins)):
-			for j in range(1,amount):
+			for j in range(1,amount + 1):
 				if j >= coins[i]:
 					dp[j] += dp[j - coins[i]]
 		return dp[-1]
@@ -60,16 +60,4 @@ class Solution2: #Tabulation
 s = Solution2()
 coins = [1,2,5]
 target = 5
-# coins = [1,2]
-# target = 5000
 print(s.change(target, coins))
-
-# class Solution2:
-# 	def change(self, amount, coins):
-# 		combinations = [0] * amount
-# 		combinations[0] = 1
-# 		
-# 		for i in range(len(coins)):
-# 			for j in range(amount):
-# 				if (j >= coins[i]):
-# 					combinations[j] += combinations[j - coins[i]]

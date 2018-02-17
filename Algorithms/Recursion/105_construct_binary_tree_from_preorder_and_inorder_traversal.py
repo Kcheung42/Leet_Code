@@ -6,7 +6,7 @@
 #    By: kcheung <kcheung@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/30 23:44:26 by kcheung           #+#    #+#              #
-#    Updated: 2018/01/31 16:16:49 by kcheung          ###   ########.fr        #
+#    Updated: 2018/02/09 12:15:51 by kcheung          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,3 +83,6 @@ printInorder(tree)
 print()
 printPreorder(tree)
 
+class Solution():
+	def buildTree(self, preorder, inorder):
+		pass

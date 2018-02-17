@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    332.CoinChange-Minimum.py                          :+:      :+:    :+:    #
+#    332_CoinChange-Minimum.py                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: kcheung <kcheung@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/11 11:36:46 by kcheung           #+#    #+#              #
-#    Updated: 2018/01/11 12:53:37 by kcheung          ###   ########.fr        #
+#    Updated: 2018/02/16 16:04:27 by kcheung          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,3 +31,11 @@ You may assume that you have an infinite number of each kind of coin.
 
 class Solution:
 	def coinChange(self, coins, amount):
+		dp = [float("inf")] * (amount + 1)
+		dp[0] = 0
+		for i in range(amount + 1):
+			if dp[i] != float("inf"):
+				for c in coins:
+					if dp[i + c] <= amount:
+						dp[i + c] = min(dp[i + c], dp[i] + 1)
+		return dp[-1] if dp[-1] != float("inf") else -1
