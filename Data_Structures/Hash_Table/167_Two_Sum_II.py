@@ -6,7 +6,7 @@
 #    By: kcheung <kcheung@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/12 11:39:27 by kcheung           #+#    #+#              #
-#    Updated: 2018/01/12 14:14:25 by kcheung          ###   ########.fr        #
+#    Updated: 2018/02/20 20:43:49 by kcheung          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,10 @@ class Solution(object):
 		"""
 		dict = {};
 		n = len(numbers)
-		for i in range(n):
-			if numbers[i] in dict:
-				return ([dict[numbers[i]], i + 1])
-			key = target - numbers[i]
+		for i, n in enumerate(numbers):
+			if n in dict:
+				return ([dict[n], i + 1])
+			key = target - n
 			dict[key] = i + 1
 
 s = Solution()
@@ -47,4 +47,3 @@ target = 9
 numbers = [2,3,4]
 target = 6
 print(s.twoSum(numbers, target))
-
