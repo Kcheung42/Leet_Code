@@ -23,6 +23,7 @@ return [0, 1].
 
 class Solution:
 	def twoSum(self, nums, target):
+		dict = {}
 		if len(nums) == 0:
 			return False
 		for i in range(len(nums)):
