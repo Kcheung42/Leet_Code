@@ -22,13 +22,4 @@ var letterCombinations = function(digits) {
   return results;
 };
 
-
-function test(arr){
-  return arr.push(1);
-}
-
-var a = function(){
-  var arr = [];
-  test(arr);
-  return arr;
-}
+letterCombinations("23");
