@@ -21,21 +21,40 @@ Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
 '''
 
+from typing import *
+# tags:
+
+# Time = O()
+# Space = O()
 class Solution:
-	def twoSum(self, nums, target):
-		dict = {}
-		if len(nums) == 0:
-			return False
-		for i in range(len(nums)):
-			if nums[i] in dict:
-				return (dict[nums[i]], i)
-			else:
-				dict[target - nums[i]] = i
+    def twoSum(self, nums, target):
+        d = {}
+        for i, v in enumerate(nums):
+            if v in d:
+                return [d[v], i]
+            else:
+                d[target-v] = i
+        return False
 
-s = Solution()
-nums = [2,7,11,15]
-target = 9
-print(s.twoSum(nums,target))
+import unittest
 
-#Practice Below
+class TestSolution1(unittest.TestCase):
+    def test_simple(self):
+        nums = [2,7,11,15]
+        target = 9
+        s = Solution()
+        self.assertEqual(s.twoSum(nums, target), [0,1])
 
+    def test_simple2(self):
+        nums = [2,2]
+        target = 4
+        s = Solution()
+        self.assertEqual(s.twoSum(nums, target), [0,1])
+
+    def test_no_valid(self):
+        nums = [2]
+        target = 4
+        s = Solution()
+        self.assertEqual(s.twoSum(nums, target), False)
+
+unittest.main(verbosity=2)

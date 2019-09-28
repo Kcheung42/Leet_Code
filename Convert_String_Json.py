@@ -39,10 +39,13 @@ class Converter:
 				key += s[index]
 				index +=1
 			index += 1
+            # start of a new json map
 			if s[index] == '{':
 				val, index = self.strToJsonHelper(s, index)
+            # start of a new json array
 			elif s[index] == '[':
 				val, index = self.jsonArray(s, index)
+            # get regular value
 			else:
 				while(s[index] not in delim):
 					val += s[index]

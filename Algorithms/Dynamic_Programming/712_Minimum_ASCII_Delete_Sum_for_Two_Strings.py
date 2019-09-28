@@ -58,15 +58,16 @@ class Solution:
 				a = ord(s1[j - 1])
 				b = ord(s2[i - 1])
 				dp[i][j] = min(
-						dp[i-1][j-1] + (0 if (a==b) else (a+b)),
-						dp[i][j-1] + a,
-						dp[i-1][j] + b,
-						)
+					dp[i-1][j-1] + (0 if (a==b) else (a+b)),
+					dp[i][j-1] + a,
+					dp[i-1][j] + b,)
 		return dp[-1][-1]
 
 s = Solution()
-s1 = 'sea'
-s2 = 'eat'
-s1 = 'thought'
-s2 = 'sloughs'
+# s1 = 'sea'
+# s2 = 'eat'
+# s1 = 'thought'
+# s2 = 'sloughs'
+s1 = 'leet'
+s2 = 'delete'
 print(s.minimumDeleteSum(s1,s2))

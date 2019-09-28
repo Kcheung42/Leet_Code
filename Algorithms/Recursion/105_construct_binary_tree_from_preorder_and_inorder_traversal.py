@@ -77,7 +77,7 @@ def printPreorder(root):
 
 s = Solution()
 preorder = [3,9,20,15,7] # use preorer as a list of root nodes to build
-inorder = [9,3,15,20,7] # store in look up. 
+inorder = [9,3,15,20,7] # store in look up.
 tree = s.buildTree(inorder, preorder)
 printInorder(tree)
 print()

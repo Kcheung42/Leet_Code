@@ -25,40 +25,55 @@ return [1,3,2].
 Note: Recursive solution is trivial, could you do it iteratively?
 
 '''
+import unittest
+from typing import *
+# tags:
+
 
 class Node():
-	def __init__(self, x):
-		self.val = x
-		self.left = None
-		self.right = None
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
+# Time = O()
+# Space = O()
 class Solution(object):
-	def inorderTraversal(self, root):
-		if root is None:
-			return []
-		stack = []
-		result = []
-		current = root
-		while(True):
-			if current is not None:
-				stack.append(current)
-				current = current.left
-			else:
-				if (len(stack) > 0):
-					current = stack.pop()
-					result.append(current.val)
-					current = current.right
-				else:
-					break;
-		return result
+    def inorderTraversal(self, root):
+        if root is None:
+            return []
+        stack = []
+        result = []
+        current = root
+        while(True):
+            if current:
+                stack.append(current)
+                current = current.left
+            elif (len(stack) > 0):
+                current = stack.pop()
+                result.append(current.val)
+                current = current.right
+            else:
+                break;
+        return result
 
-root = Node(4)
-root.left = Node(2)
-root.right = Node(6)
-root.left.left = Node(1)
-root.left.right = Node(3)
-root.right.left = Node(5)
-root.right.right = Node(7)
+class TestSolution1(unittest.TestCase):
+    def test_simple(self):
+        root = Node(4)
+        root.left = Node(2)
+        root.right = Node(6)
+        root.left.left = Node(1)
+        root.left.right = Node(3)
+        root.right.left = Node(5)
+        root.right.right = Node(7)
+        s = Solution()
+        self.assertEqual(s.inorderTraversal(root), [1,2,3,4,5,6,7])
 
-s = Solution()
-print(s.inorderTraversal(root))
+    def test_no_root(self):
+        root = None
+        s = Solution()
+        self.assertEqual(s.inorderTraversal(root), [])
+
+
+if __name__ == "__main__":
+    unittest.main()

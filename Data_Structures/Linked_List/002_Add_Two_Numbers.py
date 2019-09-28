@@ -44,7 +44,7 @@ class Solution:
 				self.addNode(resultList, sum % 10)
 			sum //= 10
 		return resultList
-	
+
 	def convert(self, list):
 		if list is None:
 			return 0
@@ -81,4 +81,3 @@ result = s.addTwoNumbers(l1,l2)
 while result:
 	print(result.val, end=',')
 	result = result.next
-print()

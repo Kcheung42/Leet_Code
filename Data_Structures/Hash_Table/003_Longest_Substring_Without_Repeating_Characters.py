@@ -22,38 +22,56 @@ Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer 
 be a substring, "pwke" is a subsequence and not a substring.
 '''
 
+import unittest
+
+# Pseudo Code
+# use a visited array to store the index of the last seen char
+# use a working window to keep track of
+# Loop through entire string
+    # if not seen char or the last seen index is not within my working window
+        # then increase working window
+    # else update max length seen and reset window to minimum
+    # Always update visited array
+# update and return max length
+
 class Solution:
-	def lengthOfLongestSubstring(self, s):
-		"""
-		:type s: str
-		:rtype: int
-		"""
-		if s == "" :
-			return 0
-		n = len(s)
-		cur_len = 1
-		max_len = 1
-		prev_index = 0
-		i = 0
-		visited = [-1] * 256
+    def lengthOfLongestSubstring(self, s:str) -> int:
+        n = len(s)
+        # store the last seen index
+        visited = [-1] * 256
+        visited[ord(s[0])] = 0
+        cur_len = 1
+        max_len = 1
+        prev_index = 0
+        for i in range(1, n):
+            prev_index = visited[ord(s[i])]
+            if prev_index == -1 or (i - cur_len) > prev_index:
+                cur_len += 1
+            else:
+                max_len = max(cur_len, max_len)
+                cur_len = 1
+            visited[ord(s[i])] = i
+            max_len = max(cur_len, max_len)
+        return(max_len)
 
-		visited[ord(s[0])] = 0
-		for i in range(1,n):
-			prev_index = visited[ord(s[i])]
-			if prev_index == -1:
-				cur_len += 1
-			elif (i - cur_len > prev_index):
-				cur_len += 1
-			else:
-				if cur_len > max_len:
-					max_len = cur_len
-				cur_len = 1
-			visited[ord(s[i])] = i
-		if cur_len > max_len:
-			max_len = cur_len
-		return (max_len)
+class TestSolution1(unittest.TestCase):
+    def test_simple1(self):
+        str = "abcabcbb"
+        s = Solution()
+        self.assertEqual(s.lengthOfLongestSubstring(str), 3)
 
-s = Solution()
-arr = 'GEEKSFORGEEKS'
-# arr = ''
-print("Length of lis is", s.lengthOfLongestSubstring(arr))
+    def test_simple2(self):
+        str = "bbbbbb"
+        s = Solution()
+        self.assertEqual(s.lengthOfLongestSubstring(str), 1)
+
+    def test_simple3(self):
+        str = "pwwkew"
+        s = Solution()
+        self.assertEqual(s.lengthOfLongestSubstring(str), 3)
+
+
+
+if __name__ == "__main__":
+    unittest.main()
+

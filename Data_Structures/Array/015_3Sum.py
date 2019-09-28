@@ -19,53 +19,52 @@ Note: The solution set must not contain duplicate triplets.
 For example, given array S = [-1, 0, 1, 2, -1, -4],
 A solution set is:
 [
-	[-1, 0, 1],
-	[-1, -1, 2]
+    [-1, 0, 1],
+    [-1, -1, 2]
 ]
 '''
 
+from typing import List
+import unittest
 # T:O(n^2) S:O(1)
-class Solution(object):
-	def threeSum(self, nums):
-		"""
-		:type nums: List[int]
-		:rtype: List[List[int]]
-		"""
-		nums = sorted(nums)
-		result = []
-		i = 0
-		while i < len(nums) - 2: #i 0 -> 3 inclusive
-			if i == 0 or nums[i] != nums[i-1]:
-				j = i + 1
-				k = len(nums) - 1
-				while j < k:
-					if nums[i] + nums[j] + nums[k] < 0:
-						j += 1
-					elif nums[i] + nums[j] + nums[k] > 0:
-						k -= 1
-					else:
-						result.append([nums[i], nums[j], nums[k]])
-						print(result[-1])
-						j += 1
-						k -= 1
-						while j < k and nums[j] == nums[j - 1]: #skip if next j is same as previous j
-							j += 1
-						while j < k and nums[k] == nums[k + 1]:
-							k -= 1
-			i += 1
-		return result
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums = sorted(nums)
+        n = len(nums)
+        result = []
+        i = 0
+        while i < n - 2:
+            if i == 0 or nums[i] != nums[i-1]:
+                j = i + 1
+                k = n - 1
+                while j < k:
+                    if nums[i] + nums[j] + nums[k] < 0:
+                        j += 1
+                    elif nums[i] + nums[j] + nums[k] > 0:
+                        k -= 1
+                    else:
+                        result.append([nums[i] for i in [i,j,k]])
+                        j += 1
+                        k -= 1
+                        while j < k and nums[j] == nums[j-1]:
+                            j += 1
+                        while j < k and nums[k] == nums[k+1]:
+                            k -= 1
+            i += 1
+        return result
 
-class Solution(object):
-	def threeSum(self, nums):
-		nums = sorted(nums)
-		result = []
-		i = 0
-		while i < len(nums) - 2:
-			j = i + 1
-			k = j + 1
 
-s = Solution()
-a = [-1,0,1,2,-1,-4]
-s.threeSum(a)
+class TestSolution1(unittest.TestCase):
+    def test_simple(self):
+        nums = [-1, 0, 1, 2, -1, -4]
+        s = Solution()
+        test_ans = [[-1, 0, 1], [-1, -1, 2]]
+        test_set = set.union(*map(set, test_ans))
+        ans = s.threeSum(nums)
+        ans_set = set.union(*map(set, ans))
+        self.assertEqual(ans_set, test_set)
 
-#hint: Order Does Not matter
+
+if __name__ == "__main__":
+    unittest.main()
+

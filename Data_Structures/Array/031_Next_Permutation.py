@@ -45,27 +45,49 @@ outputs are in the right-hand column.
 # 1 4 3 5 2
 # 1 4 5 2 3
 # 1 4 5 3 2
+import unittest
+from typing import *
+# tags:
 
+# Time = O()
+# Space = O()
 class Solution(object):
-	def nextPermutation(self, nums):
-		"""
-		:type nums: List[int]
-		:rtype: void Do not return anything, modify nums in-place instead.
-		"""
-		n = len(nums)
-		k = -1
-		for i in range(n-2):
-			if nums[i] < nums[i+1]:
-				k = i
-		if k == -1:
-			return(nums[::-1])
-		for i in range(k + 1, n):
-			if nums[i] > nums[k]:
-				l = i
-		nums[l], nums[k] = nums[k], nums[l]
-		nums[k+1:] = nums[:k:-1]
+    def nextPermutation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        n = len(nums)
+        k = -1
+        for i in range(n-1):
+            if nums[i] < nums[i+1]:
+                k = i
+        if k == -1:
+            return(nums[::-1])
+        for i in range(k + 1, n):
+            if nums[i] > nums[k]:
+                l = i
+        nums[l], nums[k] = nums[k], nums[l]
+        nums[k+1:] = nums[k+1:][::-1]
+        return nums
 
-s = Solution()
-nums = [1,3,5,4,2]
-s.nextPermutation(nums)
-print(nums)
+
+class TestSolution1(unittest.TestCase):
+    def test_simple(self):
+        nums = [1,3,2,5,4]
+        s = Solution()
+        self.assertEqual(s.nextPermutation(nums), [1,3,4,2,5])
+
+    def test_simple2(self):
+        nums = [1,2,3]
+        s = Solution()
+        self.assertEqual(s.nextPermutation(nums), [1,3,2])
+
+    def test_simple3(self):
+        nums = [3,2,1]
+        s = Solution()
+        self.assertEqual(s.nextPermutation(nums), [1,2,3])
+
+
+if __name__ == "__main__":
+    unittest.main()

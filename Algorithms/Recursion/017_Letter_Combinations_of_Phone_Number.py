@@ -50,10 +50,9 @@ class SolutionCount:
 	def letterCombinations(self, digits):
 		lookup = ["", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
 		return self.letterCombinationsRecur(lookup, digits, 0)
-	
 
-# s = Solution()
-s = SolutionCount()
-digits = "23"
+s = Solution()
+# s = SolutionCount()
+digits = "234"
 print(s.letterCombinations(digits))
 
