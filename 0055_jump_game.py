@@ -1,5 +1,6 @@
-import unittest
-from typing import *
+#------------------------------------------------------------------------------
+# Questions: 0055_jump_game.py
+#------------------------------------------------------------------------------
 # tags:
 
 '''
@@ -23,8 +24,13 @@ Example 2:
 Input: [3,2,1,0,4]
 Output: false
 Explanation: You will always arrive at index 3 no matter what. Its maximum
-             jump length is 0, which makes it impossible to reach the last index.
+jump length is 0, which makes it impossible to reach the last index.
 '''
+
+#------------------------------------------------------------------------------
+# Solutions
+#------------------------------------------------------------------------------
+from typing import *
 
 # Time = O(2**N)
 # where n is the length of nums
@@ -77,6 +83,11 @@ class Solution3:
                 last = i
         return last == 0
 
+
+#------------------------------------------------------------------------------
+# Tests
+#------------------------------------------------------------------------------
+import unittest
 
 class TestSolution(unittest.TestCase):
     def test_simple(self):

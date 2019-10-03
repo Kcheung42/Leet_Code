@@ -1,8 +1,35 @@
-import unittest
+#------------------------------------------------------------------------------
+# Questions: 0103_binary_tree_zigzag_level_order_traversal.py
+#------------------------------------------------------------------------------
+# tags:
+'''
+Given a binary tree, return the zigzag level order traversal of its nodes' values.
+(ie, from left to right, then right to left for the next level and alternate between).
+
+For example:
+Given binary tree [3,9,20,null,null,15,7],
+    3
+   / \
+  9  20
+    /  \
+   15   7
+return its zigzag level order traversal as:
+[
+  [3],
+  [20,9],
+  [15,7]
+]
+'''
+
+
+#------------------------------------------------------------------------------
+# Solutions
+#------------------------------------------------------------------------------
 
 # Time = O(N)
 # Space = O(N)
 class Solution(object):
+    # Two Stacks
     def zigzagLevelOrder(self, root):
         if not root:
             return []
@@ -71,6 +98,10 @@ class Solution2(object):
         return res
 
 
+#------------------------------------------------------------------------------
+# Tests
+#------------------------------------------------------------------------------
+import unittest
 class TestSolution1(unittest.TestCase):
     def test_simple(self):
         root = [3,9,20,None,None,15,7]
@@ -80,6 +111,16 @@ class TestSolution1(unittest.TestCase):
 
         s2 = Solution2()
         self.assertEqual(s2.zigzagLevelOrder(root), [[3], [20,9], [15,7]])
+
+
+    def test_none_root(self):
+        root = None
+
+        s = Solution()
+        self.assertEqual(s.zigzagLevelOrder(None), [])
+
+        s2 = Solution2()
+        self.assertEqual(s2.zigzagLevelOrder(None), [])
 
 
 if __name__ == "__main__":

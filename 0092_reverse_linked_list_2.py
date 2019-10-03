@@ -1,6 +1,7 @@
-################################################################################
-# Question
-################################################################################
+#------------------------------------------------------------------------------
+# Questions: 0092_reverse_linked_list_2.py
+#------------------------------------------------------------------------------
+# tags:
 '''
 Reverse a linked list from position m to n. Do it in one-pass.
 
@@ -13,11 +14,9 @@ Output: 1->4->3->2->5->NULL
 
 '''
 
-
-################################################################################
+#------------------------------------------------------------------------------
 # Solutions
-################################################################################
-
+#------------------------------------------------------------------------------
 from typing import *
 from test_utils.LinkedList import Node, LinkedList
 
@@ -35,7 +34,8 @@ class Solution(object):
             nonlocal left, stop
 
             #base case
-            if n == 1: return
+            if n == 1:
+                return
 
             right = right.next
             if m > 1:
@@ -55,32 +55,42 @@ class Solution(object):
         return head
 
 
+# Input: 1->2->3->4->5->NULL, m = 2, n = 4
+# Output: 1->4->3->2->5->NULL
 class Solution2(object):
-    def recursive_range(self, head, m, n):
+    def reverse_range(self, head, m, n):
         if not head:
             return
 
-        dummy = Node()
-        dumm.next = head
-        p = head
+        prev = None
+        cur = head
+        while m > 1:
+            prev = cur
+            cur = cur.next
+            m -= 1
+            n -= 1
+        tail = cur
+        con = prev
 
-        for i in range(m):
-            p = p.next
-            tail = p.next
+        while n:
+            temp = cur.next
+            cur.next = prev
+            prev = cur
+            cur = temp
+            n -= 1
 
-        for i in range(n-m):
-            temp = p.next
-            p.next = tail.next
-            tail.next = tail.next.next
-            p.next = temp
+        if con:
+            con.next = prev
+        else:
+            head = prev
+        tail.next = cur
 
-        return dummy.next
+        return head
 
 
-################################################################################
+#------------------------------------------------------------------------------
 # Tests
-################################################################################
-
+#------------------------------------------------------------------------------
 import unittest
 
 class TestSolution1(unittest.TestCase):
@@ -102,7 +112,7 @@ class TestSolution1(unittest.TestCase):
         for i in range(10):
             ll.push_to_tail(i)
 
-        s = Solution()
+        s = Solution2()
         result = s.reverse_range(ll.head, 2, 4)
         self.assertEqual(ll.to_array(), [0, 3, 2, 1, 4, 5, 6, 7, 8, 9])
 
