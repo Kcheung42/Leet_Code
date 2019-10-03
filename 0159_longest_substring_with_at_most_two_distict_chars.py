@@ -1,49 +1,15 @@
-import unittest
+#------------------------------------------------------------------------------
+# Questions:0011_container_with_most_water.py
+#------------------------------------------------------------------------------
+'''
+"Given a string s , find the length of the longest substring t
+that contains at most 2 distinct characters."
+'''
+
+#------------------------------------------------------------------------------
+# Solutions
+#------------------------------------------------------------------------------
 from typing import *
-
-
-# "Given a string s , find the length of the longest substring t
-# that contains at most 2 distinct characters."
-
-# class Solution: Fail some cases
-#     def lengthOfLongestSubstringTwoDistinct(self, s: str) -> int:
-#         if not s:
-#             return 0
-#         distinct_chars = []
-#         n = len(s)
-#         cur_len = 1
-#         max_len = 1
-#         visited = [-1] * 256
-#         distinct_chars.append(s[0])
-#         visited[ord(s[0])] = 0
-#         for i in range(1, n):
-#             print(f'distince_chars:{distinct_chars}')
-#             if len(distinct_chars) < 2:
-#                 distinct_chars.append(s[i])
-#                 visited[ord(s[i])] = i
-#                 cur_len += 1
-#                 print(f'2nd str:{s[i-cur_len:i]} i:{i} cur_len:{cur_len}, s[i]:{s[i]}')
-#             elif s[i] in distinct_chars:
-#                 if s[i] != s[i-1]:
-#                     visited[ord(s[i])] = i
-#                 cur_len += 1
-#                 print(f'1st str:{s[i-cur_len:i]} i:{i} cur_len:{cur_len}, s[i]:{s[i]}')
-#             else:
-#                 print(f'3rd str:{s[i-cur_len:i]} i:{i} cur_len:{cur_len}, s[i]:{s[i]}')
-#                 max_len = max(max_len, cur_len)
-#                 if visited[ord(s[0])] > visited[ord(distinct_chars[1])]:
-#                     prevIndex = visited[ord(distinct_chars[0])]
-#                     distinct_chars.pop()
-#                 else:
-#                     prevIndex = visited[ord(distinct_chars[1])]
-#                     distinct_chars.pop(0)
-#                 cur_len = i - prevIndex + 1
-#                 print(f'4th str:{s[i-cur_len:i]} i:{i} cur_len:{cur_len}, s[i]:{s[i]}')
-#                 distinct_chars.append(s[i])
-#                 visited[ord(s[i])] = i
-#         max_len = max(max_len, cur_len)
-#         return max_len
-
 
 from collections import defaultdict
 class Solution:
@@ -73,10 +39,16 @@ class Solution:
                 del hashmap[s[del_idx]]
                 # move left pointer of the slidewindow
                 left = del_idx + 1
-
-            max_len = max(max_len, right - left)
+            cur_len = right - left
+            max_len = max(max_len, cur_len)
 
         return max_len
+
+
+#------------------------------------------------------------------------------
+# Tests
+#------------------------------------------------------------------------------
+import unittest
 
 class TestSolution1(unittest.TestCase):
     def test_simple(self):
@@ -101,5 +73,9 @@ class TestSolution1(unittest.TestCase):
         s = Solution()
         self.assertEqual(s.lengthOfLongestSubstringTwoDistinct(arr), 2)
 
+    def test_empty_string(self):
+        arr = ''
+        s = Solution()
+        self.assertEqual(s.lengthOfLongestSubstringTwoDistinct(arr), 0)
 
 unittest.main()
