@@ -1,9 +1,36 @@
-import unittest
+#------------------------------------------------------------------------------
+# Questions: 0104_maximum_depth_of_binary_tree.py
+#------------------------------------------------------------------------------
+'''
+Given a binary tree, find its maximum depth.
+
+The maximum depth is the number of nodes along the longest path from the root
+node down to the farthest leaf node.
+
+Note: A leaf is a node with no children.
+
+Example:
+
+Given binary tree [3,9,20,null,null,15,7],
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+return its depth = 3.
+
+'''
+
+#------------------------------------------------------------------------------
+# Solutions
+#------------------------------------------------------------------------------
 from typing import *
 from test_utils.BinaryTree import BinaryTree, TreeNode
 # tags:
 
 class Solution:
+    '''Recursion'''
     def maxDepth(self, root: TreeNode) -> int:
         if root is None:
             return 0
@@ -18,6 +45,7 @@ class Solution:
 
 
 class Solution2:
+    '''Stack'''
     def maxDepth(self, root: TreeNode) -> int:
         stack = []
         stack.append((1, root))
@@ -30,6 +58,11 @@ class Solution2:
                 stack.append((current_depth+1, node.right))
         return depth
 # Time = O(N)
+
+#------------------------------------------------------------------------------
+# Tests
+#------------------------------------------------------------------------------
+import unittest
 
 class TestSolution1(unittest.TestCase):
     def test_simple(self):

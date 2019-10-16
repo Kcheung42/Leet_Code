@@ -11,8 +11,9 @@ Given an array of integers nums, sort the array in ascending order.
 #------------------------------------------------------------------------------
 from typing import *
 
-class Solution:
+class QuickSort:
     '''
+    Quick Sort
     Time: O(nlogn)
     Space: O(1)
     '''
@@ -42,6 +43,29 @@ class Solution:
         return nums
 
 
+class CountSort:
+    '''
+    Count Sort
+    Time: O(n+k) for elements in range 1 - k
+    Space: O(1)
+    '''
+    def sortArray(self, nums: List[int]) -> List[int]:
+        N = len(nums)
+        output = [0 for i in range(N)]
+        count = [0] * (max(nums) + 1)
+
+        for n in nums:
+            count[n] += 1
+
+        for i in range(1, len(count)):
+            count[i] += count[i-1]
+
+        for n in nums:
+            output[count[n] - 1] = n
+            count[n] -= 1
+        return output
+
+
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
@@ -49,9 +73,15 @@ import unittest
 
 class TestSolution(unittest.TestCase):
     def test_simple(self):
-        nums = [9,8,7,6,5,4,3,2,1,0]
-        s = Solution()
-        self.assertEqual(s.sortArray(nums), [0,1,2,3,4,5,6,7,8,9])
+        # nums = [9,8,7,6,5,4,3,2,1,0]
+        nums = [1,4,1,2,7,5,2]
+        sorted_nums = sorted(nums)
+
+        s = QuickSort()
+        self.assertEqual(s.sortArray(nums), sorted_nums)
+
+        s = CountSort()
+        self.assertEqual(s.sortArray(nums), sorted_nums)
 
 
 unittest.main(verbosity=2)

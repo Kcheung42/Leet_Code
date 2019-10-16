@@ -1,15 +1,7 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    094_Binary_Tree_Inorder_Traversal.py               :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: kcheung <kcheung@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/01/29 16:30:23 by kcheung           #+#    #+#              #
-#    Updated: 2018/01/30 21:45:04 by kcheung          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
+#------------------------------------------------------------------------------
+# Question:
+#------------------------------------------------------------------------------
+# tags:
 '''
 Given a binary tree, return the inorder traversal of its nodes' values.
 
@@ -23,12 +15,12 @@ Given binary tree [1,null,2,3],
 return [1,3,2].
 
 Note: Recursive solution is trivial, could you do it iteratively?
-
 '''
-import unittest
-from typing import *
-# tags:
 
+#------------------------------------------------------------------------------
+# Solutions
+#------------------------------------------------------------------------------
+from typing import *
 
 class Node():
     def __init__(self, x):
@@ -36,8 +28,7 @@ class Node():
         self.left = None
         self.right = None
 
-# Time = O()
-# Space = O()
+
 class Solution(object):
     def inorderTraversal(self, root):
         if root is None:
@@ -45,19 +36,23 @@ class Solution(object):
         stack = []
         result = []
         current = root
-        while(True):
+        while(current or len(stack) > 0):
             if current:
                 stack.append(current)
                 current = current.left
-            elif (len(stack) > 0):
+            else:
                 current = stack.pop()
                 result.append(current.val)
                 current = current.right
-            else:
-                break;
         return result
 
-class TestSolution1(unittest.TestCase):
+
+#------------------------------------------------------------------------------
+# Tests
+#------------------------------------------------------------------------------
+import unittest
+
+class TestSolution(unittest.TestCase):
     def test_simple(self):
         root = Node(4)
         root.left = Node(2)
@@ -75,5 +70,17 @@ class TestSolution1(unittest.TestCase):
         self.assertEqual(s.inorderTraversal(root), [])
 
 
-if __name__ == "__main__":
-    unittest.main()
+unittest.main(verbosity=2)
+
+
+
+''
+import unittest
+from typing import *
+# tags:
+
+
+
+# Time = O()
+# Space = O()
+

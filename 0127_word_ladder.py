@@ -1,7 +1,7 @@
 import unittest
 from typing import *
 import collections
-# tags:
+# tags: graph
 
 # Algoirthm
 # 1. Do the pre-processing on the given wordList and find all the possible

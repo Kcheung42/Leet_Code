@@ -36,19 +36,18 @@ from typing import *
 from test_utils.BinaryTree import TreeNode, BinaryTree
 
 class Solution(object):
-    def isValidBSTHelper(self, root, left, right):
-        if root is None:
-            return True
-        # return left < root.val and root.val > right and \
-        return left < root.val > right and \
-        self.isValidBSTHelper(root.left, left, root.val) and \
-        self.isValidBSTHelper(root.right, root.val, right)
-
     def isValidBST(self, root):
         """
         :type root: TreeNode
         :rtype: bool
         """
+        def isValidBSTHelper(root, left, right):
+                if root is None:
+                    return True
+                return left < root.val < right and \
+                isValidBSTHelper(root.left, left, root.val) and \
+                isValidBSTHelper(root.right, root.val, right)
+
         return isValidBSTHelper(root, float("-inf"), float("inf"))
 
 
@@ -62,7 +61,7 @@ class TestSolution(unittest.TestCase):
         root = [2,1,3]
         root = BinaryTree(root).root
         s = Solution()
-        self.assertEqual(s.isValidBST, True)
+        self.assertEqual(s.isValidBST(root), True)
 
 
 unittest.main(verbosity=2)

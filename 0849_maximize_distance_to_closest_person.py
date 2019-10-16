@@ -1,4 +1,6 @@
-from typing import *
+#------------------------------------------------------------------------------
+# Question: 0849_maximize_distance_to_closest_person.py
+#------------------------------------------------------------------------------
 # tags: Easy
 '''
 In a row of seats, 1 represents a person sitting in that seat, and 0 represents
@@ -26,14 +28,17 @@ Output: 3
 Explanation:
 If Alex sits in the last seat, the closest person is 3 seats away.
 This is the maximum distance possible, so the answer is 3.
-
 '''
-# Time = O()
-# Space = O()
+
+#------------------------------------------------------------------------------
+# Solutions
+#------------------------------------------------------------------------------
+from typing import *
+
 class Solution:
     def maxDistToClosest(self, seats):
         N = len(seats)
-        left, right = [float("inf")] * N, [N] * N
+        left, right = [N] * N, [N] * N
 
         for i in range(N):
             if seats[i] == 1: left[i] = 0
@@ -47,8 +52,12 @@ class Solution:
                    for i, seat in enumerate(seats) if not seat)
 
 
+#------------------------------------------------------------------------------
+# Tests
+#------------------------------------------------------------------------------
 import unittest
-class TestSolution1(unittest.TestCase):
+
+class TestSolution(unittest.TestCase):
     def test_simple(self):
         seats = [1,0,0,0,1,0,1]
         s = Solution()
@@ -63,7 +72,6 @@ class TestSolution1(unittest.TestCase):
         seats = [0,0,0,1,1]
         s = Solution()
         self.assertEqual(s.maxDistToClosest(seats), 3)
-
 
 
 unittest.main(verbosity=2)

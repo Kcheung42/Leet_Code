@@ -21,21 +21,36 @@ Output: 49
 #------------------------------------------------------------------------------
 from typing import *
 
+'''
+Intuition: Using two pointers (left, right) to build a window we know that the
+volume of water we can hold is the distance between them multiplied by the min
+of the 2 values.
+
+If left is larger, we don't need to check the window with right -= 1, because the
+volume will always be smaller. We just need to move the left pointer += 1.
+
+If right is larger, do the opposite.
+
+As we move the pointer always calculate the volume and compare it to the max.
+Update as needed
+'''
+
 class Solution:
 # Time: O(N)
 # Space: O(1)
     def maxArea(self, height: List[int]) -> int:
-        start = 0
-        end = len(height) - 1
+        right = 0
+        left = len(height) - 1
         max_area = -1
-        while end > start:
-            cur_area = ((end - start) * min(height[start], height[end]))
+        while left > right:
+            cur_area = ((left - right) * min(height[right], height[left]))
             max_area = max(max_area, cur_area)
-            if height[end] > height[start]:
-                start += 1
+            if height[left] > height[right]:
+                right += 1
             else:
-                end -= 1
+                left -= 1
         return max_area
+
 
 
 #------------------------------------------------------------------------------

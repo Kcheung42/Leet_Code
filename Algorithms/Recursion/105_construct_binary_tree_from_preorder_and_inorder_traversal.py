@@ -1,34 +1,36 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    105_construct_binary_tree_from_preorder_a          :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: kcheung <kcheung@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/01/30 23:44:26 by kcheung           #+#    #+#              #
-#    Updated: 2018/02/09 12:15:51 by kcheung          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+#------------------------------------------------------------------------------
+# Question: 105_construct_binary_tree_from_preorder_and_inorder_traversal.py
+#------------------------------------------------------------------------------
+# tags:
+'''
+Given inorder and preorder traversal of a tree, construct the binary tree.
 
-# Given inorder and preorder traversal of a tree, construct the binary tree.
-#
-# Note:
-# You may assume that duplicates do not exist in the tree.
-#
-# For example, given
-#
-# inorder = [9,3,15,20,7]
-# preorder = [3,9,20,15,7]
-#
-# Return the following binary tree:
-#
-#     3
-#    / \
-#   9  20
-#     /  \
-#    15   7
+Note:
+You may assume that duplicates do not exist in the tree.
+
+For example, given
+
+inorder = [9,3,15,20,7]
+preorder = [3,9,20,15,7]
+
+Return the following binary tree:
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+
 
 # Definition for a binary tree node.
+'''
+
+#------------------------------------------------------------------------------
+# Solutions
+#------------------------------------------------------------------------------
+from typing import *
+
+
 class TreeNode(object):
 	def __init__(self, x):
 		self.val = x
@@ -36,16 +38,16 @@ class TreeNode(object):
 		self.right = None
 
 class Solution(object):
-	def buildTreeRecur(self, preorder, inorder, lookup,  inorder_start, inorder_end):
+
+	def buildTreeRecur(self, preorder, inorder, lookup,  inorder_start, inorder_end, pIndex):
 		if inorder_start > inorder_end:
 			return None
-		node = TreeNode(preorder[self.pIndex])
+		node = TreeNode(preorder[pIndex])
 		inIndex = lookup[node.val] #find inorder index of chosen node
-		self.pIndex += 1
 		if inorder_start == inorder_end:
 			return node
-		node.left = self.buildTreeRecur(preorder, inorder,lookup, inorder_start, inIndex-1)
-		node.right = self.buildTreeRecur(preorder, inorder,lookup, inIndex+1, inorder_end)
+		node.left = self.buildTreeRecur(preorder, inorder,lookup, inorder_start, inIndex-1, pIndex+1)
+		node.right = self.buildTreeRecur(preorder, inorder,lookup, inIndex+1, inorder_end, pIndex+2)
 		return node
 
 	def buildTree(self, preorder, inorder):
@@ -55,34 +57,33 @@ class Solution(object):
 		:rtype: TreeNode
 		"""
 		n = len(inorder)
-		self.pIndex = 0
 		lookup = {}
 		for i,val in enumerate(inorder):
 			lookup[val] = i
-		return(self.buildTreeRecur(preorder, inorder,lookup, 0, n-1))
+		return(self.buildTreeRecur(preorder, inorder,lookup, 0, n-1, 0))
 
-def printInorder(root):
-	if root is None:
-		return
-	printInorder(root.left)
-	print(root.val, end=" ")
-	printInorder(root.right)
 
-def printPreorder(root):
-	if root is None:
-		return
-	print(root.val, end=" ")
-	printPreorder(root.left)
-	printPreorder(root.right)
+#------------------------------------------------------------------------------
+# Tests
+#------------------------------------------------------------------------------
+import unittest
 
-s = Solution()
-preorder = [3,9,20,15,7] # use preorer as a list of root nodes to build
-inorder = [9,3,15,20,7] # store in look up.
-tree = s.buildTree(inorder, preorder)
-printInorder(tree)
-print()
-printPreorder(tree)
+class TestSolution(unittest.TestCase):
+    def test_simple(self):
+        def in_order(root, result):
+            if root is None:
+                return None
+            in_order(root.left, result)
+            result.append(root.val)
+            in_order(root.right, result)
 
-class Solution():
-	def buildTree(self, preorder, inorder):
-		pass
+        preorder = [3,9,20,15,7] # use preorer as a list of root nodes to build
+        inorder = [9,3,15,20,7] # store in look up.
+        s = Solution()
+        result = []
+        tree = s.buildTree(preorder, inorder)
+        in_order(tree, result)
+        self.assertEqual(result, [9,3,15,20,7])
+
+
+unittest.main(verbosity=2)
