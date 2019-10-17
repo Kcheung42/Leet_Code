@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------
-# Question:
+# Question: 0235_lca_of_bst.py
 #------------------------------------------------------------------------------
 # tags: Binary
 '''
@@ -37,15 +37,57 @@ class Solution:
             return None
 
         if root.val == p or root.val == q:
-            return root.val
+            return root
 
         leftLCA = self.lowestCommonAncestor(root.left, p, q)
         rightLCA = self.lowestCommonAncestor(root.right, p, q)
 
         if leftLCA and rightLCA:
-            return root.val
+            return root
 
-        return leftLCA.val if leftLCA is not None else rightLCA.val
+        return leftLCA if leftLCA is not None else rightLCA
+
+
+class Solution2:
+    '''
+    Time: O(n)
+    Space: O(1)
+    Assumptions: p and/or q might not be present in the tree
+    '''
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+
+        def lcaRecur(root, p, q, v):
+            if root is None:
+                return None
+
+            if root.val == p:
+                v[0] = True
+                return root
+            if root.val == q:
+                v[1] = True
+                return root
+
+            lcaRight = lcaRecur(root.right, p, q, v)
+            lcaLeft = lcaRecur(root.left, p, q, v)
+
+            if lcaRight and lcaLeft:
+                return root
+
+            if lcaLeft:
+                return lcaLeft
+            elif lcaRight:
+                return lcaRight
+            else:
+                return None
+
+
+        v = [False, False]
+        lca = lcaRecur(root, p, q, v)
+        # return lca only if both `p` and `v` are in the tree
+        if v[0] and v[1]:
+            return lca
+        else:
+            return None
 
 
 #------------------------------------------------------------------------------
@@ -54,13 +96,39 @@ class Solution:
 import unittest
 
 class TestSolution(unittest.TestCase):
-    def test_simple(self):
+    def test_lca_is_root(self):
         array = [3,5,1,6,2,0,8,None,None,7,4]
         p = 5
         q = 1
         root = BinaryTree(array).root
         s = Solution()
-        self.assertEqual(s.lowestCommonAncestor(root, p, q), 3)
+        self.assertEqual(s.lowestCommonAncestor(root, p, q).val, 3)
+
+class TestSolution2(unittest.TestCase):
+    def test_lca_is_root(self):
+        array = [3,5,1,6,2,0,8,None,None,7,4]
+        p = 5
+        q = 1
+        root = BinaryTree(array).root
+        s = Solution2()
+        self.assertEqual(s.lowestCommonAncestor(root, p, q).val, 3)
+
+    def test_p_does_not_exist(self):
+        array = [3,5,1,6,2,0,8,None,None,7,4]
+        p = 100
+        q = 4
+        root = BinaryTree(array).root
+        s = Solution2()
+        self.assertEqual(s.lowestCommonAncestor(root, p, q), None)
+
+    def test_p_and_q_does_not_exist(self):
+        array = [3,5,1,6,2,0,8,None,None,7,4]
+        p = 100
+        q = 200
+        root = BinaryTree(array).root
+        s = Solution2()
+        self.assertEqual(s.lowestCommonAncestor(root, p, q), None)
+
 
 
 unittest.main(verbosity=2)

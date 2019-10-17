@@ -54,6 +54,7 @@ class Solution:
             max_len = max(cur_len, max_len)
         return(max_len)
 
+
 class TestSolution1(unittest.TestCase):
     def test_simple1(self):
         str = "abcabcbb"
