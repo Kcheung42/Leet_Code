@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
-# Question:
+# Question: 0937_reorder_data_in_log_files.py
 #------------------------------------------------------------------------------
-# tags:
+# tags: Easy
 '''
 You have an array of logs.  Each log is a space delimited string of words.
 
@@ -34,8 +34,8 @@ from typing import *
 
 class Solution:
     '''
-    Time:
-    Space:
+    Time: O(nlogn) where n is number of logs
+    Space: O(n)
     '''
     def reorderLogFiles(self, logs: List[str]) -> List[str]:
         def isDigit(log):
@@ -45,10 +45,20 @@ class Solution:
         digits = list(filter(lambda x: isDigit(x),logs))
         lets.sort(key=lambda x: x.split()[0])
         lets.sort(key=lambda x: x.split()[1:])
-        # lets.sort(key=lambda x: (x.split()[1:], x.split()[0]))
         result = lets + digits
 
         return lets + digits
+
+class Solution2:
+    '''
+    Time: O(nlogn) where n is number of logs
+    Space: O(n)
+    '''
+    def reorderLogFiles(self, logs: List[str]) -> List[str]:
+        def f (log):
+            identifier, content = log.split(" ", 1)
+            return (0, content, identifier) if content[0].isalpha() else (1,)
+        return sorted(logs, key=f)
 
 
 #------------------------------------------------------------------------------
@@ -65,14 +75,29 @@ class TestSolution(unittest.TestCase):
             s.reorderLogFiles(logs),
             ["let1 art can","let3 art zero","let2 own kit dig","dig1 8 1 5 1","dig2 3 6"])
 
+        s = Solution2()
+        self.assertEqual(
+            s.reorderLogFiles(logs),
+            ["let1 art can","let3 art zero","let2 own kit dig","dig1 8 1 5 1","dig2 3 6"])
 
-    def test_simple2(self):
-        logs = ["dig1 8 1 5 1","let3 art can","dig2 3 6","let2 art ab dig","let1 art art"]
+
+    def test_letter_ties(self):
+        logs = ["dig1 8 1 5 1","let3 art","dig2 3 6","let2 art own dig","let1 art"]
         s = Solution()
         self.assertEqual(
             s.reorderLogFiles(logs),
-            ["let1 art art","let3 art can","let2 own kit dig","dig1 8 1 5 1","dig2 3 6"])
+            ["let1 art","let3 art","let2 art own dig","dig1 8 1 5 1","dig2 3 6"])
 
 
+        s = Solution2()
+        self.assertEqual(
+            s.reorderLogFiles(logs),
+            ["let1 art","let3 art","let2 art own dig","dig1 8 1 5 1","dig2 3 6"])
+
+    def test_simple2(self):
+        logs = ["let1 act","let8 act aoo"]
+
+        s = Solution2()
+        self.assertEqual(s.reorderLogFiles(logs), ["let1 act", "let8 act aoo"])
 unittest.main(verbosity=2)
 

@@ -73,17 +73,13 @@ class Solution2:
             if lcaRight and lcaLeft:
                 return root
 
-            if lcaLeft:
-                return lcaLeft
-            elif lcaRight:
-                return lcaRight
-            else:
-                return None
+            return lcaLeft if lcaLeft else lcaRight
 
 
         v = [False, False]
         lca = lcaRecur(root, p, q, v)
         # return lca only if both `p` and `v` are in the tree
+
         if v[0] and v[1]:
             return lca
         else:

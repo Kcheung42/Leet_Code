@@ -11,6 +11,20 @@ Given an array of integers nums, sort the array in ascending order.
 #------------------------------------------------------------------------------
 from typing import *
 
+class BubbleSort:
+    '''
+    Quick Sort
+    Time: O(n^2)
+    Space: O(1)
+    '''
+    def sortArray(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        for i in range(n):
+            for j in range(n-i-1):
+                if nums[j] > nums[j+1]:
+                    nums[j], nums[j+1] = nums[j+1], nums[j]
+        return nums
+
 class QuickSort:
     '''
     Quick Sort
@@ -73,9 +87,12 @@ import unittest
 
 class TestSolution(unittest.TestCase):
     def test_simple(self):
-        # nums = [9,8,7,6,5,4,3,2,1,0]
-        nums = [1,4,1,2,7,5,2]
+        nums = [9,8,7,6,5,4,3,2,1,0]
+        # nums = [1,4,1,2,7,5,2]
         sorted_nums = sorted(nums)
+
+        s = BubbleSort()
+        self.assertEqual(s.sortArray(nums), sorted_nums)
 
         s = QuickSort()
         self.assertEqual(s.sortArray(nums), sorted_nums)

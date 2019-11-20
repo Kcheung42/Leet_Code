@@ -22,6 +22,38 @@ A solution set is:
     [-1, 0, 1],
     [-1, -1, 2]
 ]
+
+j must be less than k
+Target = 0
+[-4 -1 -1 0 1 2] => -3
+ i   j        k
+
+[-4 -1 -1 0 1 2] => -3
+  i     j     k
+
+[-4 -1 -1 0 1 2] => -2
+  i       j   k
+
+[-4 -1 -1 0 1 2] => -1
+  i         j k
+
+[-4 -1 -1 0 1 2] => 0 => append [-1,-1,2]
+     i  j     k
+when found move j and k inwards for more combinations
+
+
+[-4 -1 -1 0 1 2] => 0 => append [-1,0,1]
+[    i    j k  ]
+when found move j and k inwards for more combinations
+
+if j >= k move i inward, reset j, k
+[-4 -1 -1 0 1 2] => 1
+[       i j   k]
+
+[-4 -1 -1 0 1 2] => 0 => append[-1, 0, 1]
+[       i j k  ]
+
+
 '''
 
 from typing import List

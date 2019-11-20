@@ -49,14 +49,14 @@ class Solution2:
     def maxDepth(self, root: TreeNode) -> int:
         stack = []
         stack.append((1, root))
-        depth = 0
+        max_depth = 0
         while stack:
             current_depth, node = stack.pop()
             if node:
-                depth = max(depth, current_depth)
+                max_depth = max(max_depth, current_depth)
                 stack.append((current_depth+1, node.left))
                 stack.append((current_depth+1, node.right))
-        return depth
+        return max_depth
 # Time = O(N)
 
 #------------------------------------------------------------------------------

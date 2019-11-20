@@ -32,14 +32,14 @@ class Board:
 		print("{} | {} | {}".format(cells[0], cells[1], cells[2]))
 		print("===Next===")
 		print("Layout: Use NumberPad")
-	
+
 	def isWinner(self, player):
 		for w in self.winPath:
 			self.winner = player if player.board & w == w else None
 			if self.winner:
 				print("We have a Winner!! Player {}".format(player.symb))
 				return
-	
+
 	def play(self, p1, p2):
 		self.display(p1, p2)
 		player_now, player_wait = p1, p2

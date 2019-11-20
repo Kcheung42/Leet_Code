@@ -35,6 +35,7 @@ class Trie(object):
 		node.isWord = True
 		node.word = word
 
+
 	def bfs(self):
 		# q = collections.deque([self.root])
 		q = [self.root]

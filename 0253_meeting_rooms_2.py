@@ -26,11 +26,13 @@ class Solution:
         intervals = sorted(intervals, key=lambda x: x[0])
 
         h = []
+        start = 0
+        end = 1
         for i in intervals:
-            start = i[0]
+            start = i[start]
             if len(h) > 0 and h[0][0] <= start:
                 heapq.heappop(h)
-            heapq.heappush(h, [i[1], i[0]])
+            heapq.heappush(h, [i[end], i[start]])
         return len(h)
 
 

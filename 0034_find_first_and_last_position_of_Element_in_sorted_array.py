@@ -25,10 +25,25 @@ Output: [-1,-1]
 # Solutions
 #------------------------------------------------------------------------------
 from typing import *
+import functools
+
+def debug(func):
+    """Print the function signature and return value"""
+    @functools.wraps(func)
+    def wrapper_debug(*args, **kwargs):
+        args_repr = [repr(a) for a in args]                      # 1
+        kwargs_repr = [f"{k}={v!r}" for k, v in kwargs.items()]  # 2
+        signature = ", ".join(args_repr + kwargs_repr)           # 3
+        print(f"Calling {func.__name__}({signature})")
+        value = func(*args, **kwargs)
+        print(f"{func.__name__!r} returned {value!r}")           # 4
+        return value
+    return wrapper_debug
 
 # Time = O(log n)
 # Space = O(1)
 class Solution:
+    @debug
     def find(self, nums, target, left):
         lo = 0
         hi = len(nums)
@@ -40,6 +55,7 @@ class Solution:
                 lo = mid+1
         return lo
 
+    @debug
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         left_idx = self.find(nums, target, True)
         if left_idx == len(nums) or nums[left_idx] != target:

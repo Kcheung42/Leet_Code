@@ -12,7 +12,6 @@ class LinkedList:
         if values:
             self.add_multiple(values)
 
-
     def push_to_tail(self, data):
         node = Node(data)
         if self.tail is None:
@@ -55,6 +54,23 @@ class LinkedList:
         return removed
 
 
+    def remove_nth_from_end(self, n):
+        if n > self.count:
+            return self.head
+        dummy = Node(0)
+        dummy.next = self.head
+        runner = current = dummy
+        for i in range(n+1):
+            runner = runner.next
+        while runner:
+            runner = runner.next
+            current = current.next
+        current.next = current.next.next
+        if current == dummy:
+            self.head = current.next
+        return self.head
+
+
 class TestSolution(unittest.TestCase):
 
     def test_add(self):
@@ -81,6 +97,20 @@ class TestSolution(unittest.TestCase):
         removed = ll.remove_at_pos(3)
         self.assertEqual(removed.data, 4)
         self.assertEqual(ll.to_array(), [1,2,3,5,6])
+
+    def test_remove_nth_node_from_end(self):
+        nums = [1,2,3,4,5,6]
+        ll = LinkedList(nums)
+        removed = ll.remove_nth_from_end(2)
+        self.assertEqual(ll.to_array(), [1,2,3,4,6])
+
+    def test_remove_nth_node_from_end(self):
+        nums = [1,2,3,4,5,6]
+        ll = LinkedList(nums)
+        removed = ll.remove_nth_from_end(6)
+        self.assertEqual(ll.to_array(), [2,3,4,5,6])
+
+
 
 
 if __name__ == "__main__":

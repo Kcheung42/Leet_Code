@@ -13,7 +13,6 @@
 
 # 	return words
 
-
 # def my_reversed(words):
 # 	for i in range(len(words) // 2):
 # 		tmp = words[i]
@@ -125,9 +124,6 @@
 
 # print(solution("zqgiuydhxvmiywfadkvjldrebyhxewdksmiw", "dkmbzfqtyjabflrhqwjhnqcugftyulqwpabl"))
 
-
-
-
 # def solution(angles):
 #     stack = []
 #     openCount = 0
@@ -164,11 +160,9 @@
 #         qsort(arr, start, mid - 1)
 #         qsort(arr, mid + 1, end)
 
-
 # a = [9,8,7,6,5,4,11,12]
 # qsort(a, 0, len(a)-1)
 # print(a)
-
 
 ###################################################
 # 08-31-19
@@ -198,8 +192,6 @@
 # s = Solution()
 # print(s.multiply(num1, num2))
 
-
-
 ###################################################s
 # 09-01-19
 ###################################################
@@ -212,10 +204,364 @@
 # 09-08-19
 ###################################################
 
-nums = [1,2,3,4,5,6]
+# nums = [1,2,3,4,5,6]
 
-L = nums[0:2]
-R = nums[2:4]
-L[0] = 9
-print(f'nums:{nums}, L:{L}, R:{R}')
+# L = nums[0:2]
+# R = nums[2:4]
+# L[0] = 9
+# print(f'nums:{nums}, L:{L}, R:{R}')
+
+#-------------------------------------------------------------------------------
+# 10-19-19
+#-------------------------------------------------------------------------------
+# Need to pass set or stack by value not ref
+
+# arr =
+# def perm(arr):
+#     new_arr = arr[:]
+#     for a in new_arr:
+#         new = .pop()
+#         perm(new)
+#     print(arr)
+#     return arr
+
+# perm(arr)
+
+# const result = getCats(123).then((images) => {
+#   images.forEach(img => addImage(img));
+# });
+
+# const result = getCats(123).then((images) => {
+#   images.forEach(img => addImage(img));
+# });
+
+#-------------------------------------------------------------------------------
+# challenge with Hatchways
+#-------------------------------------------------------------------------------
+'''
+
+# Find the intersection of two arrays
+# [10, 1, 3, 5] and [4, 2, 1, 5] -> [1, 5]
+
+# key,val
+
+# def f(arr1, arr2):
+#     d = dict()
+#     result = []
+#     for i in arr1:
+#         d[i] = True
+
+#     for i in arr2:
+#         if i in d:
+#             result.append(i)
+#     print(result)
+
+# f([10, 1, 3, 5], [4, 2, 1, 5])
+
+# Comment 1
+# .  Comment 3
+# .     Comment 4
+# .  Comment 2
+# .  Comment 5
+# Comment 10
+import functools
+
+
+def tree(comments):
+    def dfs(root, prefix, graph):
+        print(f"\n{prefix}{graph[root]['comment']}")
+        for nei in graph[root]['children']:
+            dfs(nei, prefix + "  ", graph)
+
+    graph = {}
+    for c in comments:
+        parent = c['parent']
+        id = c['id']
+        comment = c['comment']
+        if id not in graph:
+            graph[id] = {'comment': comment, 'children': []}
+        elif graph[id]['comment'] is None:
+            graph[id]['comment'] = comment
+        if parent is not None:
+            if parent not in graph:
+                graph[parent] = {'comment': None, 'children': [id]}
+            else:
+                graph[parent]['children'].append(id)
+
+    roots = filter(lambda x: x['parent'] == None, comments)
+    rootIds = map(lambda x: x['id'], roots)
+    for r in list(rootIds):
+        dfs(r, "", graph)
+
+    #traverse graph from node with no parent
+    #filter out from comments parent = None
+
+
+comments = [{
+    "id": 5,
+    "comment": "Comment 5",
+    "parent": 1
+}, {
+    "id": 4,
+    "comment": "Comment 4",
+    "parent": 3
+}, {
+    "id": 3,
+    "comment": "Comment 3",
+    "parent": 1
+}, {
+    "id": 2,
+    "comment": "Comment 2",
+    "parent": 1
+}, {
+    "id": 1,
+    "comment": "Comment 1",
+    "parent": None
+}]
+
+tree(comments)
+'''
+
+#-------------------------------------------------------------------------------
+# Interview with Sonder
+#-------------------------------------------------------------------------------
+'''
+# Booking Start Date
+# Sonder wants to help guests plan their stay
+# by finding check-in and check-out dates that accommodate a desired length of stay.
+
+# Sonder determines availability based on existing bookings,
+# serialized as colon-separated pairs of integers.
+# The first integer is a check-in date, and the second is a check-out date.
+# Each integer represents an offset since Jan 1, 2019.
+# E.g. '0:1' represents a booking where the check-in date is Jan 1st 2019,
+# and the check-out date is Jan 2nd 2019.
+
+# Directions
+# Implement a method, booking_start_date(string bookings, int stay_length, int current_date)
+# that will return the first day that can accommodate a booking of length stay_length.
+
+# Examples:
+# Input: bookings: '0:2 3:5 7:14', stay_length: 1, current_date: 4
+# Output: 5
+# Input: bookings: '0:3 3:6 7:14', stay_length: 2, current_date: 4
+# Output: 14
+# Input: bookings: '0:2 5:6 7:14', stay_length: 1, current_date: 3
+# Output: 3
+
+# Rules:
+# Input is well-formed
+# Bookings will not overlap
+# Bookings are sorted in order of check-in date
+# Only dates later than or equal to current date should be returned
+
+# start-date:end-date.
+
+# cur date: 6 len: 1
+#(6:7)
+
+# loop through and get rid of past bookings
+# 1. Within a booking
+#    1a. End date is equal to cur date: see if next booking start date <= curdate + len
+#    2a. Endate is not: take difference between end date and curdate + len, see if fit in next booking
+# 2. not in booking
+#    1a. check the start date + len <= start date of next booking
+
+
+def booking_start_date(bookings, stay_length, current_date):
+    # bookings = [(int(time[0]), int(time[1]))
+    #             for time in [b.split(':') for b in bookings.split()]]
+
+    # for b in bookings.split():
+    #     for i in b:
+    #         start, end = b.split(':')
+    #         print(f'{start}, {end}')
+
+    # bookings = [(start, end) for b in bookings.split() for time in b.split(':')]
+    bookings = [(int(start), int(end)) for start,end in [b.split(':') for b in bookings.split()]]
+    print(bookings)
+    result = 0
+    i = 0
+    while i < len(bookings):
+        b = bookings[i]
+        start = 0
+        end = 1
+        # booking end date > curdate or cur date within booking date: move pointer to booking end date
+        if b[end] <= current_date or (b[end] >= current_date
+                                      and b[start] <= current_date):
+            i += 1
+            result = b[end]
+        elif b[start] >= current_date:
+            if result + stay_length <= b[start]:
+                return result
+            else:
+                i += 1
+                result = b[end]
+    return result
+
+
+def booking_start_date(bookings, stay_length, current_date):
+    print(
+        f'\nbookings:{bookings} stay_length:{stay_length} current{current_date}'
+    )
+    result = 0
+    booking_bit = 0
+    window_bit = 1
+    good_window = [0, 1, 1 << (stay_length + 1), (1 << (stay_length)) | 1]
+    for i in range(stay_length):
+        window_bit = window_bit << 1
+        window_bit = window_bit | 1
+    print(f'window: {"{0:b}".format(window_bit)}')
+    bookings = [(int(b[0]), int(b[1]))
+                for b in [b.split(':') for b in bookings.split()]]
+    print(bookings)
+    for b in bookings:
+        for i in range(b[0], b[1] + 1):
+            booking_bit = booking_bit | 2**i
+    print(f'booking_bit: {"{0:b}".format(booking_bit)}')
+
+    for i in range(current_date):
+        booking_bit = booking_bit >> 1
+        result += 1
+
+    print(f'\nstartinglLoop')
+    while booking_bit > 0:
+        print(f'booking_bit_filtered: {"{0:b}".format(booking_bit)}')
+        print(f'result:{result}')
+        if window_bit & booking_bit in good_window:
+            return result
+        else:
+            booking_bit = booking_bit >> 1
+            result += 1
+
+# 3 days
+# window = 1111
+# Good windows:
+# 1001
+# 0001
+# 1000
+# 0000
+
+# i = 0
+# while i <= bookings[:-1][1]:
+#     if 2**i & booking_bit == 2** i:
+
+# good stay
+# 111 & 001 == 1
+
+# bad stay
+# 111 & 111 != 1
+
+# Input: bookings: '0:2 3:5 7:14', stay_length: 1, current_date: 4
+# Input: bookings: '0:3 3:6 7:14', stay_length: 2, current_date: 4
+# Input: bookings: '0:2 5:6 7:14', stay_length: 1, current_date: 3
+print(booking_start_date('0:2 3:5 7:14', 1, 4))
+print(booking_start_date('0:3 3:6 7:14', 2, 4))
+print(booking_start_date('0:2 5:6 7:14', 1, 3))
+print(booking_start_date('0:2 5:6 7:14', 3, 2))
+
+'''
+#-------------------------------------------------------------------------------
+# 11-06-19
+#-------------------------------------------------------------------------------
+
+'''
+class maxHeap():
+
+    def __init__(self):
+        self.heap = []
+        self.currentSize = 0
+
+    def heapifyUp(self, i):
+        parent = (i-1) // 2
+
+    def heapPush(self, value):
+        self.heap.append(value)
+        self.currentSize += 1
+        self.heapifyUp(self.currentSize-1)
+'''
+
+#-------------------------------------------------------------------------------
+# 11-11-19
+#-------------------------------------------------------------------------------
+
+'''
+def flip(arr, k):
+    if k > len(arr):
+        return None
+    for i in range(k//2):
+        arr[i], arr[k-i-1] = arr[k-i-1], arr[i]
+    return arr
+
+def next_smallest(arr, max_k):
+    k = 1
+    min_val = arr[0]
+    for i in range(max_k):
+        if arr[i] < min_val:
+            k = i + 1
+            min_val = arr[i]
+    print(f'k:{k} smalles:{arr[k-1]}')
+    return k
+
+def pancake(arr):
+    n = len(arr)
+    max_k = n
+    for i in range(n):
+        k = next_smallest(arr , max_k)
+        flip(arr,k)
+        print(arr)
+        flip(arr,max_k)
+        print(arr)
+        max_k -= 1
+    flip(arr,n)
+    return arr
+
+
+# arr = [1,2,3,4,5]
+# k = 3
+# new_arr = print(flip(arr,3))
+
+# max_k = 4
+# k = next_smallest(arr, max_k)
+# print(k)
+# print(flip(arr,k))
+# print(flip(arr,max_k))
+
+arr = [5,2,3,6,1]
+print(pancake(arr))
+'''
+
+#-------------------------------------------------------------------------------
+# 11-14-19
+#-------------------------------------------------------------------------------
+
+def str_split_recur(s, start, end):
+    if end == len(s):
+        return []
+    if s[end] == " ":
+        return str_split_recur(s, end+1, end+1)
+    elif end+1 == len(s) or s[end+1] == ' ':
+        word =  s[start:end+1]
+        print(f'word:{word}')
+        return [word] + str_split_recur(s, end+1, end + 1)
+    else:
+        return str_split_recur(s, start, end+1)
+
+string = "Today  is a good day "
+print(str_split_recur(string,0,0))
+
+def str_reverse_words(s, start, cur):
+    if cur == len(s):
+        return []
+    if s[cur] == " ":
+        return str_reverse_words(s, cur+1, cur+1)
+    elif cur+1 == len(s) or s[cur+1] == ' ':
+        word =  s[start:cur+1]
+        print(f'word:{word}')
+        return str_reverse_words(s, cur+1, cur + 1) + [word]
+    else:
+        return str_reverse_words(s, start, cur+1)
+
+string = "Today  is a good day "
+print(str_reverse_words(string,0,0))
 

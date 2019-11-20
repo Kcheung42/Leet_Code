@@ -38,7 +38,7 @@ class MinHeap():
         while 2 * i + 1 <= self.currentSize - 1:
             smaller = self.getSmallerChild(i)
             if self.heap[smaller] < self.heap[i]:
-                self.__swap(smaller, i)
+                self._swap(smaller, i)
                 i = smaller
             else:
                 break

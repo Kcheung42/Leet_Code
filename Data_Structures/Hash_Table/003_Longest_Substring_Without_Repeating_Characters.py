@@ -40,16 +40,14 @@ class Solution:
         # store the last seen index
         visited = [-1] * 256
         visited[ord(s[0])] = 0
-        cur_len = 1
         max_len = 1
-        prev_index = 0
+        start = 0
         for i in range(1, n):
+            cur_len = i - start
             prev_index = visited[ord(s[i])]
-            if prev_index == -1 or (i - cur_len) > prev_index:
-                cur_len += 1
-            else:
+            if prev_index >= start:
                 max_len = max(cur_len, max_len)
-                cur_len = 1
+                start = prev_index + 1
             visited[ord(s[i])] = i
             max_len = max(cur_len, max_len)
         return(max_len)
@@ -71,6 +69,11 @@ class TestSolution1(unittest.TestCase):
         s = Solution()
         self.assertEqual(s.lengthOfLongestSubstring(str), 3)
 
+
+    def test_simple4(self):
+        str = "abcazgaa"
+        s = Solution()
+        self.assertEqual(s.lengthOfLongestSubstring(str), 5)
 
 
 if __name__ == "__main__":

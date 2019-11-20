@@ -33,7 +33,7 @@ Definition for a binary tree node.
 # Solutions
 #------------------------------------------------------------------------------
 from typing import *
-from test_utils.BinaryTree import TreeNode, BinaryTree
+from test_utils.BinaryTree import BinaryTree
 
 class Solution(object):
     def isValidBST(self, root):
@@ -65,7 +65,3 @@ class TestSolution(unittest.TestCase):
 
 
 unittest.main(verbosity=2)
-
-
-
-
