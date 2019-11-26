@@ -2,6 +2,7 @@ import unittest
 from typing import *
 # tags:
 
+
 # Time = O(N**2)
 # Space = O(N**2)
 class Solution:
@@ -65,6 +66,22 @@ class Solution2:
                 start = R-i-1
         return {'max_len': max_len, 'start': start}
 
+
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        def isPalindrome(i, j):
+            return all([s[k] == s[j-k+i] for k in range(i,j)])
+
+        n = len(s)
+        max_len = 0
+        start = -1
+        for i in range(n):
+            for j in range(i, n):
+                if isPalindrome(i,j):
+                    if (j-i+1) > max_len:
+                        start = i
+                    max_len = max((j-i+1), max_len)
+        return {'max_len': max_len, "start": start}
 
 class TestSolution1(unittest.TestCase):
     def test_simple(self):

@@ -34,21 +34,24 @@ import unittest
     # Always update visited array
 # update and return max length
 
+
 class Solution:
     def lengthOfLongestSubstring(self, s:str) -> int:
         n = len(s)
         # store the last seen index
-        visited = [-1] * 256
-        visited[ord(s[0])] = 0
+        visited = {}
+        visited[s[0]] = 0
         max_len = 1
         start = 0
         for i in range(1, n):
             cur_len = i - start
-            prev_index = visited[ord(s[i])]
+            prev_index = visited[s[i]] if s[i] in visited else -1
+            visited[s[i]] = i
+
+            #calculaate max len if repeat char found in window
             if prev_index >= start:
                 max_len = max(cur_len, max_len)
                 start = prev_index + 1
-            visited[ord(s[i])] = i
             max_len = max(cur_len, max_len)
         return(max_len)
 
