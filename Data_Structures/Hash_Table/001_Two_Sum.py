@@ -30,10 +30,10 @@ class Solution:
     def twoSum(self, nums, target):
         d = {}
         for i, v in enumerate(nums):
-            if v in d:
-                return [d[v], i]
-            else:
+            if v not in d:
                 d[target-v] = i
+            else:
+                return  [d[v], i]
         return False
 
 import unittest

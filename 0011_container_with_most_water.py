@@ -39,16 +39,16 @@ class Solution:
 # Time: O(N)
 # Space: O(1)
     def maxArea(self, height: List[int]) -> int:
-        right = 0
-        left = len(height) - 1
+        left = 0
+        right = len(height) - 1
         max_area = -1
-        while left > right:
-            cur_area = ((left - right) * min(height[right], height[left]))
+        while right > left:
+            cur_area = ((right - left) * min(height[left], height[right]))
             max_area = max(max_area, cur_area)
-            if height[left] > height[right]:
-                right += 1
+            if height[left] < height[right]:
+                left += 1
             else:
-                left -= 1
+                right -= 1
         return max_area
 
 

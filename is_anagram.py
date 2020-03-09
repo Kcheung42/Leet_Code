@@ -53,7 +53,6 @@ add()()(1)()()(2) -> 3
 
 from functools import partial
 
-
 def add(arg1=None, arg2=None):
     if arg2 is not None:
         return arg1 + arg2

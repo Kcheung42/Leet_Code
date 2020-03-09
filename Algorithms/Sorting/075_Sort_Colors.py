@@ -34,24 +34,25 @@ Could you come up with an one-pass algorithm using only constant space?
 '''
 
 class Solution(object):
-	def sortColors(self, nums):
-		"""
-		:type nums: List[int]
-		:rtype: void Do not return anything, modify nums in-place instead.
-		"""
-		n = len(nums)
-		output = [0 for i in range(n)]
-		counts = [0 for i in range(3)]
-		for i,val in enumerate(nums):
-			counts[val] += 1
-		for i in range(1,3):
-			counts[i] += counts[i - 1]
-		print(counts)
-		for i in range(n):
-			index = counts[nums[i]]
-			output[index-1] = nums[i]
-			counts[nums[i]] -= 1
-		return output
+    def sortColors(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        n = len(nums)
+        output = [0 for i in range(n)]
+        counts = [0 for i in range(3)]
+        print(nums)
+        for i,val in enumerate(nums):
+            counts[val] += 1
+        for i in range(1,3):
+            counts[i] += counts[i - 1]
+        print(counts)
+        for i,v in range(n):
+            index = counts[nums[i]] - 1
+            output[index] = nums[i]
+            counts[nums[i]] -= 1
+        return output
 
 s = Solution()
 a = [2,1,0,2,0,0,0,1,1]

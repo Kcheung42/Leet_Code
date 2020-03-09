@@ -58,6 +58,7 @@ class SolutionDP:
         for i in range(len(nums)):
             maxVal = 0
             for j in range(i):
+                print(dp)
                 if nums[j] < nums[i]:
                     maxVal = max(maxVal, dp[j])
             dp[i] = max(dp[i], maxVal + 1)

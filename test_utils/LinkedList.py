@@ -5,6 +5,10 @@ class Node:
         self.data = data
         self.next = None
 
+    def __repr__(self):
+        if self:
+            return "{} -> {}".format(self.data, repr(self.next))
+
 class LinkedList:
     def __init__(self, values=None):
         self.head = self.tail = None
@@ -114,4 +118,4 @@ class TestSolution(unittest.TestCase):
 
 
 if __name__ == "__main__":
-	unittest.main()
+    unittest.main()

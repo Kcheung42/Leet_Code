@@ -238,8 +238,8 @@
 #-------------------------------------------------------------------------------
 # challenge with Hatchways
 #-------------------------------------------------------------------------------
-'''
 
+'''
 # Find the intersection of two arrays
 # [10, 1, 3, 5] and [4, 2, 1, 5] -> [1, 5]
 
@@ -266,10 +266,9 @@
 # Comment 10
 import functools
 
-
 def tree(comments):
     def dfs(root, prefix, graph):
-        print(f"\n{prefix}{graph[root]['comment']}")
+        print(f"{prefix}{graph[root]['comment']}")
         for nei in graph[root]['children']:
             dfs(nei, prefix + "  ", graph)
 
@@ -290,7 +289,7 @@ def tree(comments):
 
     roots = filter(lambda x: x['parent'] == None, comments)
     rootIds = map(lambda x: x['id'], roots)
-    for r in list(rootIds):
+    for r in sorted(list(rootIds)):
         dfs(r, "", graph)
 
     #traverse graph from node with no parent
@@ -309,7 +308,8 @@ comments = [{
     "id": 3,
     "comment": "Comment 3",
     "parent": 1
-}, {
+ },{
+
     "id": 2,
     "comment": "Comment 2",
     "parent": 1
@@ -317,9 +317,16 @@ comments = [{
     "id": 1,
     "comment": "Comment 1",
     "parent": None
-}]
+},{
+    "id": 6,
+    "comment": "Comment 6",
+    "parent": None
+    }
+
+            ]
 
 tree(comments)
+
 '''
 
 #-------------------------------------------------------------------------------
@@ -378,6 +385,7 @@ def booking_start_date(bookings, stay_length, current_date):
     #         print(f'{start}, {end}')
 
     # bookings = [(start, end) for b in bookings.split() for time in b.split(':')]
+
     bookings = [(int(start), int(end)) for start,end in [b.split(':') for b in bookings.split()]]
     print(bookings)
     result = 0
@@ -535,6 +543,7 @@ print(pancake(arr))
 # 11-14-19
 #-------------------------------------------------------------------------------
 
+'''
 def str_split_recur(s, start, end):
     if end == len(s):
         return []
@@ -564,4 +573,208 @@ def str_reverse_words(s, start, cur):
 
 string = "Today  is a good day "
 print(str_reverse_words(string,0,0))
+'''
+#-------------------------------------------------------------------------------
+# 12-07-19
+#-------------------------------------------------------------------------------
 
+'''
+d = {}
+d['a'] = 1
+d['c'] = 2
+d['b'] = 3
+
+print(list(d.items()))
+[key for key,val in  d.items()]
+
+'''
+#-------------------------------------------------------------------------------
+# 01-29-19
+#-------------------------------------------------------------------------------
+
+
+'''
+class Node():
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedList():
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def push_to_tail(self, x):
+        node = Node(x)
+        if self.tail is None:
+            self.head = self.tail = node
+        else:
+            self.tail.next = node
+            self.tail = node
+        return self.tail
+
+    def to_array(self):
+        array = []
+        cur = self.head
+        while cur:
+            array.append(cur.data)
+            cur = cur.next
+        return array
+
+    def insert_at_pos(self, x, pos):
+        node = Node(x)
+        cur = self.head
+        if cur is None or pos == 0:
+            node.next = self.head
+            self.head = node
+            return node
+
+        while pos > 0 and cur:
+            prev = cur
+            cur = cur.next
+            pos -= 1
+        prev.next = node
+        node.next = cur
+        return node
+
+# ll = LinkedList()
+# ll.push_to_tail(1)
+# ll.push_to_tail(2)
+# ll.push_to_tail(3)
+# ll.push_to_tail(5)
+# ll.insert_at_pos(4, 1)
+# print(ll.to_array())
+
+class TaskManager():
+
+    def __init__(self, backlog, commands):
+        self.backlog = self.backlog_linked_list(backlog)
+        self.backlog_order = self.create_order(backlog)
+        self.today = []
+        self.commands = commands
+
+    def create_order(self, backlog):
+        d = {}
+        for i,v in enumerate(backlog):
+            if v not in d:
+                d[v] = i
+        return d
+
+    def backlog_linked_list(self, backlog):
+        ll = LinkedList()
+        for b in backlog:
+            ll.push_to_tail(b)
+            return ll
+
+    def add(self, x):
+        pass
+
+
+t = TaskManager(["a", "b", "c", "d"], [])
+print(t.backlog_order)
+print(t.backlog.to_array())
+
+'''
+
+#-------------------------------------------------------------------------------
+# 2020-02
+#-------------------------------------------------------------------------------
+
+'''
+import functools
+
+def makeChangeMachine(coins):
+    inventory = coins
+
+    def update_inventory(combo):
+        nonlocal inventory
+        for c in combo:
+            if c not in inventory:
+                return False
+            inventory[c] -= 1
+        print(inventory)
+
+
+    def get_combo(amount):
+
+        coins_array = functools.reduce(
+            lambda acc,x: acc + [x[0]] * x[1],
+            list(coins.items()),
+            [])[::-1]
+
+        result = []
+        if sum(coins_array) < amount:
+            return False
+
+        def recur(amount, coins_array, pos, n, combo):
+            nonlocal result
+            if amount == 0:
+                result = combo
+                return True
+            if amount < 0 or pos == n:
+                return False
+
+            for i in range(pos, n):
+                current_coin = coins_array[i]
+                new_combo = combo[:] + [current_coin] if combo else [current_coin]
+                remaining = amount - current_coin
+                if recur(remaining, coins_array, pos + 1, n, new_combo):
+                    return True
+            return False
+
+        recur(amount, coins_array, 0, len(coins_array), [])
+        return result
+
+    def f(amount, on_success, on_failure):
+        nonlocal inventory
+        if not(all([amount, on_success, on_failure])):
+            print("Missing Args")
+            return False
+        else:
+            combo = get_combo(amount)
+            if combo:
+                coins = [0] * (max(combo) + 1)
+                for c in combo:
+                    coins[c] += 1
+                if on_success(coins):
+                    update_inventory(combo)
+                    return True
+                return False
+            else:
+                return on_failure()
+    return f
+
+def dump(combo):
+    print(f'{combo[1]} Pennies\n{combo[5]} nickels\n{combo[10]} dimes\n{combo[25]} quarters')
+
+def on_error():
+    print("I cannot do that!")
+
+def picky(combo):
+    dump(combo)
+    # print(combo)
+    if combo[1]:
+        print ("Nope I hate pennies")
+        return False
+    return True
+
+def easy(combo):
+    dump(combo)
+    # print(combo)
+    return True
+
+coins = { 1: 20, 5: 3, 10: 4, 25:3 }
+myChangeMachine = makeChangeMachine(coins)
+print(myChangeMachine(131,picky,on_error))
+print(myChangeMachine(131,easy,on_error))
+print(myChangeMachine(131,easy,on_error))
+
+
+'''
+#-------------------------------------------------------------------------------
+# 02-17-20
+#-------------------------------------------------------------------------------
+
+
+
+# avail = [0,0,0,0,0,0,0 ....]

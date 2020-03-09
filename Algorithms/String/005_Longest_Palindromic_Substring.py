@@ -2,11 +2,37 @@ import unittest
 from typing import *
 # tags:
 
-
-# Time = O(N**2)
-# Space = O(N**2)
-class Solution:
+class Solution1:
     def longestPalindrome(self, s: str) -> str:
+        """
+        Brute Force
+        Time = O(N**3)
+        Space = O(1)
+        """
+
+        def isPalindrome(i, j):
+            return all([s[k] == s[j-k+i] for k in range(i,j)])
+
+        n = len(s)
+        max_len = 0
+        start = -1
+        for i in range(n):
+            for j in range(i, n):
+                if isPalindrome(i,j):
+                    # Calculate the starting point of LPS
+                    if (j-i+1) > max_len:
+                        start = i
+                    max_len = max(j-i+1, max_len)
+        return {'max_len': max_len, "start": start}
+
+
+class Solution2:
+    def longestPalindrome(self, s: str) -> str:
+        """
+        Dynamic Programming
+        Time = O(N**2)
+        Space = O(N**2)
+        """
         n = len(s)
         max_len = 1
         start = 0
@@ -37,12 +63,17 @@ class Solution:
         # return max_len
         return {'max_len': max_len, 'start': start}
 
-class Solution2:
+class Solution3:
+    """
+    Manacher's Algorithm
+    Time = O(N)
+    Space = O(N)
+    """
     def longestPalindrome(self, s: str) -> str:
         C = 0
         R = 0
-        T = "$#" + "#".join(s) + "#$"
-        n = len(T)
+        S = "$#" + "#".join(s) + "#$"
+        n = len(S)
         P = [0 for i in range(n)]
         max_len = float("-inf")
         start = -1
@@ -54,7 +85,7 @@ class Solution2:
                 P[i] = min(R-i, P[mirror])
 
             # expand palindrome past R boundary
-            while (T[i - (P[i] + 1)] == T[i + (P[i] + 1)]):
+            while (S[i - (P[i] + 1)] == S[i + (P[i] + 1)]):
                 P[i] += 1
             max_len = max(P[i], max_len)
 
@@ -67,41 +98,34 @@ class Solution2:
         return {'max_len': max_len, 'start': start}
 
 
-class Solution:
-    def longestPalindrome(self, s: str) -> str:
-        def isPalindrome(i, j):
-            return all([s[k] == s[j-k+i] for k in range(i,j)])
-
-        n = len(s)
-        max_len = 0
-        start = -1
-        for i in range(n):
-            for j in range(i, n):
-                if isPalindrome(i,j):
-                    if (j-i+1) > max_len:
-                        start = i
-                    max_len = max((j-i+1), max_len)
-        return {'max_len': max_len, "start": start}
-
 class TestSolution1(unittest.TestCase):
     def test_simple(self):
         input = "babad"
-        s = Solution()
+        s = Solution1()
         self.assertEqual(s.longestPalindrome(input)['max_len'], 3)
         self.assertEqual(s.longestPalindrome(input)['start'], 0)
 
         s = Solution2()
+        self.assertEqual(s.longestPalindrome(input)['max_len'], 3)
+        self.assertEqual(s.longestPalindrome(input)['start'], 0)
+
+        s = Solution3()
         self.assertEqual(s.longestPalindrome(input)['max_len'], 3)
         self.assertEqual(s.longestPalindrome(input)['start'], 0)
 
     def test_simple2(self):
         input = "zabaxabxaba"
 
-        s = Solution()
+        s = Solution1()
         self.assertEqual(s.longestPalindrome(input)['max_len'], 5)
         self.assertEqual(s.longestPalindrome(input)['start'], 2)
 
         s = Solution2()
+        self.assertEqual(s.longestPalindrome(input)['max_len'], 5)
+        self.assertEqual(s.longestPalindrome(input)['start'], 2)
+
+
+        s = Solution3()
         self.assertEqual(s.longestPalindrome(input)['max_len'], 5)
         self.assertEqual(s.longestPalindrome(input)['start'], 2)
 

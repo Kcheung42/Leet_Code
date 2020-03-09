@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------
-# Question:
+# Question:0046_permutations.py
 #------------------------------------------------------------------------------
 # tags:
 '''
@@ -29,6 +29,8 @@ class Solution:
     '''
     Time:
     Space:
+
+    Intuition: Back Tracking and Swapping
     '''
     def permute(self, nums: List[int]) -> List[List[int]]:
         def permuteRecur(l, r, result):
@@ -42,6 +44,24 @@ class Solution:
 
         result = []
         permuteRecur(0, len(nums)-1, result)
+        return(result)
+
+class Solution:
+    '''
+    Time:
+    Space:
+
+    '''
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        def permuteRecur(nums,cur,result):
+            if nums == []:
+                result.append(cur)
+                return
+            for i,v in enumerate(nums):
+                permuteRecur(nums[:i]+nums[i+1:], cur+str(v), result)
+        result = []
+        permuteRecur(nums, "", result)
+        result = [[int(x) for x in r ] for r in result]
         return(result)
 
 

@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Question: 0030_substring_with_concatenation_of_all_words.py
 #------------------------------------------------------------------------------
-# tags:
+# tags: Hard
 '''
 You are given a string, s, and a list of words, words, that are all of the
 same length. Find all starting indices of substring(s) in s that is a
