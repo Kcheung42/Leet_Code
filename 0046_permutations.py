@@ -1,6 +1,7 @@
 #------------------------------------------------------------------------------
 # Question:0046_permutations.py
 #------------------------------------------------------------------------------
+
 # tags:
 '''
 Given a collection of distinct integers, return all possible permutations.

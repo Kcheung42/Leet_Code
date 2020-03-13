@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Question:
 #------------------------------------------------------------------------------
-# tags:
+# tags: Easy
 '''
 In a given grid, each cell can have one of three values:
 
@@ -20,11 +20,25 @@ Input: [[2,1,1],[1,1,0],[0,1,1]]
 Output: 4
 Example 2:
 
-[[2,1,1],[1,1,0],[0,1,1]] t = 0
-[[2,2,1],[2,1,0],[0,1,1]] t = 1
-[[2,2,2],[2,2,0],[0,1,1]] t = 2
-[[2,2,2],[2,2,0],[0,2,1]] t = 3
-[[2,2,2],[2,2,0],[0,2,f]] t = 4
+[[2,1,1],
+ [1,1,0],
+ [0,1,1]] t = 0
+
+[[2,2,1],
+ [2,1,0],
+ [0,1,1]] t = 1
+
+[[2,2,2],
+ [2,2,0],
+ [0,1,1]] t = 2
+
+[[2,2,2],
+ [2,2,0],
+ [0,2,1]] t = 3
+
+[[2,2,2],
+ [2,2,0],
+[0,2,2]] t = 4
 
 Input: [[2,1,1],[0,1,1],[1,0,1]]
 Output: -1
@@ -54,14 +68,35 @@ class Solution:
         def isFresh(x):
             return True if x == 1 else False
 
-        def update_grid(row, col):
-            neighbors = [(1, 0), (0, -1,), (1, 0), (0, 1)]
+        def neighbors(row, col):
+            neighbors = [(1, 0), (0, -1,), (-1, 0), (0, 1)]
             for nei in neighbors:
                 r = row + nei[0]
                 c = col + nei[1]
-                if r >=0 and r < rows and c >= 0 and c < cols and isFresh(grid[row], grid[col]):
+                if 0 <= r < R and 0 <= c < C:
+                    yield r, c
 
-        pass
+        R = len(grid)
+        C = len(grid[0])
+        queue = []
+        A = grid
+        for r, row in enumerate(A):
+            print(f"r:{r}, row:{row}")
+            for c, val in enumerate(row):
+                print(f"c:{c} val:{val}")
+                if val == 2:
+                    queue.append((r, c, 0))
+        d = 0
+        while queue:
+            r, c, d = queue.pop(0)
+            print(f"r:{r} c:{c} d:{d}")
+            for nr, nc in neighbors(r, c):
+                if isFresh(grid[nr][nc]):
+                    grid[nr][nc] = 2
+                    queue.append((nr, nc, d+1))
+        if any(1 in row for row in grid):
+            return -1
+        return d
 
 
 #------------------------------------------------------------------------------
