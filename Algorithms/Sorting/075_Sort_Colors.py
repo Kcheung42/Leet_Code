@@ -40,24 +40,33 @@ class Solution(object):
         :rtype: void Do not return anything, modify nums in-place instead.
         """
         n = len(nums)
+        k = 3
         output = [0 for i in range(n)]
-        counts = [0 for i in range(3)]
+        counts = [0 for i in range(k)]
         print(nums)
         for i,val in enumerate(nums):
             counts[val] += 1
         for i in range(1,3):
             counts[i] += counts[i - 1]
         print(counts)
-        for i,v in range(n):
+        for i,v in enumerate(range(n)):
             index = counts[nums[i]] - 1
             output[index] = nums[i]
             counts[nums[i]] -= 1
         return output
 
-s = Solution()
-a = [2,1,0,2,0,0,0,1,1]
-print(s.sortColors(a))
+
+import unittest
+
+class TestSolution(unittest.TestCase):
+    def test_simple(self):
+        s = Solution()
+        a = [2,1,0,2,0,0,0,1,1]
+        self.assertEqual(s.sortColors(a), [0,0,0,0,1,1,1,2,2])
 
 
 # Time Complexity: O(n+k) where n is the number of elements in input array and k is the range of input.
 # Auxiliary Space: O(n+k)
+
+
+unittest.main(verbosity=2)

@@ -100,6 +100,12 @@ class TestSolution(unittest.TestCase):
         s = CountSort()
         self.assertEqual(s.sortArray(nums), sorted_nums)
 
+    def test_simple2(self):
+        nums = [3, 30, 34, 5, 9]
+        sorted_nums = sorted(nums)
+        s = QuickSort()
+        self.assertEqual(s.sortArray(nums), sorted_nums)
+
 
 unittest.main(verbosity=2)
 

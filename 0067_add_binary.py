@@ -24,17 +24,10 @@ Output: "10101"
 from typing import *
 
 class Solution:
-
+    '''
+    Time: O(n)
+    '''
     def addBinary(self, a: str, b: str) -> str:
-        '''
-        longer =  11010
-        shorter =  1011
-                    i  |
-        carry = 1
-        i => 0 + carry
-        ans = 10101
-        '''
-
         n = max(len(a), len(b))
         a , b = a.zfill(n), b.zfill(n)
         carry = 0
