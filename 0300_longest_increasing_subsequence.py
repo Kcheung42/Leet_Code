@@ -39,7 +39,7 @@ class Solution:
         def _lis(nums, prev, curpos):
             if curpos == len(nums):
                 return 0
-            taken = 0
+            taken = float("-inf")
             if nums[curpos] > prev:
                 taken = 1 + _lis(nums, nums[curpos], curpos + 1)
             not_taken = _lis(nums, prev, curpos + 1)

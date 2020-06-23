@@ -171,25 +171,27 @@
 # num1 = "1234"
 # num2 = "567"
 
-# class Solution:
-#     def multiply(self, num1, num2):
-#         res = [0] * (len(num1) + len(num2))
-#         for i in range(len(num1)-1, -1, -1):
-#             carry = 0
-#             for j in range(len(num2)-1, -1, -1):
-#                 print(f'res:{res}')
-#                 print(f'i:{i}, j:{j}')
-#                 tmp = int(num1[i])*int(num2[j])+carry
-#                 # take care of the order of the next two lines
-#                 carry = (res[i+j+1] + tmp) // 10
-#                 res[i+j+1] = (res[i+j+1] + tmp) % 10
-#                 # or simply: carry, res[i+j+1] = divmod((res[i+j+1] + tmp), 10)
-#             res[i] += carry
-#         print(f'res:{res}')
-#         res = "".join(map(str, res))
-#         return '0' if not res.lstrip("0") else res.lstrip("0")
+class Solution:
+    def multiply(self, num1, num2):
+        res = [0] * (len(num1) + len(num2))
+        for i in range(len(num1)-1, -1, -1):
+            carry = 0
+            for j in range(len(num2)-1, -1, -1):
+                print(f'res:{res}')
+                print(f'i:{i}, j:{j}')
+                tmp = int(num1[i])*int(num2[j])+carry
 
-# s = Solution()
+                # take care of the order of the next two lines
+                carry = (res[i+j+1] + tmp) // 10
+                res[i+j+1] = (res[i+j+1] + tmp) % 10
+
+                # or simply: carry, res[i+j+1] = divmod((res[i+j+1] + tmp), 10)
+            res[i] += carry
+        print(f'res:{res}')
+        res = "".join(map(str, res))
+        return '0' if not res.lstrip("0") else res.lstrip("0")
+
+s = Solution()
 # print(s.multiply(num1, num2))
 
 ###################################################s
@@ -238,7 +240,6 @@
 #-------------------------------------------------------------------------------
 # challenge with Hatchways
 #-------------------------------------------------------------------------------
-
 '''
 # Find the intersection of two arrays
 # [10, 1, 3, 5] and [4, 2, 1, 5] -> [1, 5]
@@ -332,7 +333,6 @@ tree(comments)
 #-------------------------------------------------------------------------------
 # Interview with Sonder
 #-------------------------------------------------------------------------------
-'''
 # Booking Start Date
 # Sonder wants to help guests plan their stay
 # by finding check-in and check-out dates that accommodate a desired length of stay.
@@ -358,54 +358,57 @@ tree(comments)
 
 # Rules:
 # Input is well-formed
-# Bookings will not overlap
-# Bookings are sorted in order of check-in date
-# Only dates later than or equal to current date should be returned
+#   #         start, end = b.split(':')
+#         print(f'{start}, {end}')
 
-# start-date:end-date.
+# bookings = [(start, end) for b in bookings.split() for time in b.split(':')]
 
-# cur date: 6 len: 1
-#(6:7)
+# curr date is not within booking range
 
-# loop through and get rid of past bookings
-# 1. Within a booking
-#    1a. End date is equal to cur date: see if next booking start date <= curdate + len
-#    2a. Endate is not: take difference between end date and curdate + len, see if fit in next booking
-# 2. not in booking
-#    1a. check the start date + len <= start date of next booking
+# curr date is within booking range
+#    go to end date and see if we can insert booking
 
 
 def booking_start_date(bookings, stay_length, current_date):
-    # bookings = [(int(time[0]), int(time[1]))
-    #             for time in [b.split(':') for b in bookings.split()]]
-
-    # for b in bookings.split():
-    #     for i in b:
-    #         start, end = b.split(':')
-    #         print(f'{start}, {end}')
-
-    # bookings = [(start, end) for b in bookings.split() for time in b.split(':')]
-
-    bookings = [(int(start), int(end)) for start,end in [b.split(':') for b in bookings.split()]]
+    bookings = [(int(start), int(end))
+                for start, end in [b.split(':')
+                                   for b in bookings.split()]]
     print(bookings)
-    result = 0
+    result = current_date
+    start = 0
+    end = 1
     i = 0
-    while i < len(bookings):
-        b = bookings[i]
-        start = 0
-        end = 1
-        # booking end date > curdate or cur date within booking date: move pointer to booking end date
-        if b[end] <= current_date or (b[end] >= current_date
-                                      and b[start] <= current_date):
-            i += 1
-            result = b[end]
-        elif b[start] >= current_date:
-            if result + stay_length <= b[start]:
+    for b in bookings:
+        if b[start] <= result <= b[end] or result < b[start]:
+            if result < b[start] and result + stay_length <= b[start]:
                 return result
-            else:
-                i += 1
-                result = b[end]
+            result = b[end]
     return result
+
+
+    # UGLY CODE BELOW
+    # while i < len(bookings):
+    #     b = bookings[i]
+    #     start = 0
+    #     end = 1
+    #     # booking end date > curdate or cur date within booking date: move pointer to booking end date
+    #     if b[end] <= current_date or (b[end] >= current_date
+    #                                   and b[start] <= current_date):
+    #         i += 1
+    #         result = b[end]
+    #     elif b[start] >= current_date:
+    #         if result + stay_length <= b[start]:
+    #             return result
+    #         else:
+    #             i += 1
+    #             result = b[end]
+    # return result
+
+
+print(booking_start_date('0:1 3:5 7:14', 1, 6))
+print(booking_start_date('0:2 3:5 7:14', 1, 4))
+print(booking_start_date('0:3 3:6 7:14', 2, 4))
+print(booking_start_date('0:2 5:6 7:14', 1, 3))
 
 
 def booking_start_date(bookings, stay_length, current_date):
@@ -442,7 +445,7 @@ def booking_start_date(bookings, stay_length, current_date):
             booking_bit = booking_bit >> 1
             result += 1
 
-# 3 days
+
 # window = 1111
 # Good windows:
 # 1001
@@ -463,16 +466,14 @@ def booking_start_date(bookings, stay_length, current_date):
 # Input: bookings: '0:2 3:5 7:14', stay_length: 1, current_date: 4
 # Input: bookings: '0:3 3:6 7:14', stay_length: 2, current_date: 4
 # Input: bookings: '0:2 5:6 7:14', stay_length: 1, current_date: 3
-print(booking_start_date('0:2 3:5 7:14', 1, 4))
-print(booking_start_date('0:3 3:6 7:14', 2, 4))
-print(booking_start_date('0:2 5:6 7:14', 1, 3))
-print(booking_start_date('0:2 5:6 7:14', 3, 2))
+# print(booking_start_date('0:2 3:5 7:14', 1, 4))
+# print(booking_start_date('0:3 3:6 7:14', 2, 4))
+# print(booking_start_date('0:2 5:6 7:14', 1, 3))
+# print(booking_start_date('0:2 5:6 7:14', 3, 2))
 
-'''
 #-------------------------------------------------------------------------------
 # 11-06-19
 #-------------------------------------------------------------------------------
-
 '''
 class maxHeap():
 
@@ -492,7 +493,6 @@ class maxHeap():
 #-------------------------------------------------------------------------------
 # 11-11-19
 #-------------------------------------------------------------------------------
-
 '''
 def flip(arr, k):
     if k > len(arr):
@@ -542,7 +542,6 @@ print(pancake(arr))
 #-------------------------------------------------------------------------------
 # 11-14-19
 #-------------------------------------------------------------------------------
-
 '''
 def str_split_recur(s, start, end):
     if end == len(s):
@@ -574,10 +573,10 @@ def str_reverse_words(s, start, cur):
 string = "Today  is a good day "
 print(str_reverse_words(string,0,0))
 '''
+
 #-------------------------------------------------------------------------------
 # 12-07-19
 #-------------------------------------------------------------------------------
-
 '''
 d = {}
 d['a'] = 1
@@ -591,8 +590,6 @@ print(list(d.items()))
 #-------------------------------------------------------------------------------
 # 01-29-19
 #-------------------------------------------------------------------------------
-
-
 '''
 class Node():
     def __init__(self, data):
@@ -679,7 +676,6 @@ print(t.backlog.to_array())
 #-------------------------------------------------------------------------------
 # 2020-02
 #-------------------------------------------------------------------------------
-
 '''
 import functools
 
@@ -775,6 +771,6 @@ print(myChangeMachine(131,easy,on_error))
 # 02-17-20
 #-------------------------------------------------------------------------------
 
-
-
 # avail = [0,0,0,0,0,0,0 ....]
+
+

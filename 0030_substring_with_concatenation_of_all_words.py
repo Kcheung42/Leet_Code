@@ -1,6 +1,6 @@
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Question: 0030_substring_with_concatenation_of_all_words.py
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # tags: Hard
 '''
 You are given a string, s, and a list of words, words, that are all of the
@@ -9,15 +9,14 @@ concatenation of each word in words exactly once and without any intervening
 characters.
 
 Example 1:
-
 Input:
   s = "barfoothefoobarman",
   words = ["foo","bar"]
 Output: [0,9]
-Explanation: Substrings starting at index 0 and 9 are "barfoo" and "foobar" respectively.
-The output order does not matter, returning [9,0] is fine too.
-Example 2:
+Explanation: Substrings starting at index 0 and 9 are "barfoo" and "foobar"
+respectively. The output order does not matter, returning [9,0] is fine too.
 
+Example 2:
 Input:
   s = "wordgoodgoodgoodbestword",
   words = ["word","good","best","word"]
@@ -25,10 +24,11 @@ Output: []
 
 '''
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Solutions
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 from typing import *
+
 
 class Solution:
 
@@ -92,6 +92,7 @@ class Solution:
 
     '''
     from collections import Counter
+
 
     def findSubstring(self, s: str, words: List[str]) -> List[int]:
         n = len(s)

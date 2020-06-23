@@ -16,6 +16,13 @@ Input: [1,8,6,2,5,4,8,3,7]
 Output: 49
 '''
 
+# Psuedo
+#loop while left <right
+    #calc current area
+    #update max
+    #move pointer with smaller heiht towards the center
+
+
 #------------------------------------------------------------------------------
 # Solutions
 #------------------------------------------------------------------------------

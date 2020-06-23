@@ -10,6 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
+#tags: #Facebook
+
 '''
 Implement next permutation, which rearranges numbers into the lexicographically
 next greater permutation of numbers.
@@ -26,25 +28,38 @@ outputs are in the right-hand column.
 3,2,1 → 1,2,3
 1,1,5 → 1,5,1
 
+find k where nums[k] < nums[k+1]
+find j from right of k, next largest
+  set j while nums[j] > nums[k]
+swap(k,j)
+
+1,2,3,4
+    k j
+
+1,2,4,3 !swap wih end?
+  k
+      j
+
+1,3,2,4
+    k
+      j
+
+1,3,4,2  !not swap with end
+  k
+    j
+
+1,4,2,3
+    k
+      j
+
+1,4,3,2
+k
+      j
+
+2,1,3,4
+
+
 '''
-# 1 2 3 4 5
-# 1 2 3 5 4
-# 1 2 4 3 5
-# 1 2 4 5 3
-# 1 2 5 3 4
-# 1 2 5 4 3
-#
-# 1 3 2 4 5
-# 1 3 2 5 4
-# 1 3 4 2 5
-# 1 3 4 5 2
-# 1 3 5 4 2
-#
-# 1 4 2 3 5
-# 1 4 3 2 5
-# 1 4 3 5 2
-# 1 4 5 2 3
-# 1 4 5 3 2
 import unittest
 from typing import *
 # tags:
@@ -62,8 +77,9 @@ class Solution(object):
         for i in range(n-1):
             if nums[i] < nums[i+1]:
                 k = i
-        if k == -1:
-            return(nums[::-1])
+
+        if k == -1: return(nums[::-1])
+
         for i in range(k + 1, n):
             if nums[i] > nums[k]:
                 l = i

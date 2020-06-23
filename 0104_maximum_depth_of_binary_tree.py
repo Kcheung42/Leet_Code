@@ -29,7 +29,7 @@ from typing import *
 from test_utils.BinaryTree import BinaryTree, TreeNode
 # tags:
 
-class Solution:
+class SolutionRecur:
     '''Recursion'''
     def maxDepth(self, root: TreeNode) -> int:
         if root is None:
@@ -44,8 +44,8 @@ class Solution:
 # O(log N): Best case if tree is balanced, since height of the tree would be Log N
 
 
-class Solution2:
-    '''Stack'''
+class SolutionStack:
+    '''Stack DFS'''
     def maxDepth(self, root: TreeNode) -> int:
         stack = []
         stack.append((1, root))
@@ -69,10 +69,10 @@ class TestSolution1(unittest.TestCase):
         root = [3,9,20,None,None,15,7]
         root = BinaryTree(root).root
 
-        s = Solution()
+        s = SolutionRecur()
         self.assertEqual(s.maxDepth(root), 3)
 
-        s = Solution2()
+        s = SolutionStack()
         self.assertEqual(s.maxDepth(root), 3)
 
 

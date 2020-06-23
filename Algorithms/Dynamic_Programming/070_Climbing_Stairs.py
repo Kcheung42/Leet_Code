@@ -10,6 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
+
 '''
 You are climbing a stair case. It takes n steps to reach to the top.
 
@@ -54,6 +55,33 @@ class Solution1(object): # Time:O(2^n) Space:O(n)
 	def climbStairs(self, n):
 		return(self.climbStairsHelper(0, n))
 
+'''
+f(i+1, n) + f(i+2, n)
+
+L
+
+                                  ....f(10,10) = > 1
+                                 /
+                          f(3,10)
+                         /
+                  f(2,10) => ?
+                         \
+                          f(5,10)
+                 /
+          f(1,10) => ?
+                 \
+                  f(3,10)
+        /
+f(0,10)
+        \
+                  f(3, 10)
+                 /
+          f(2,10) => memo[2]
+                 \
+                  f(5, 10)
+R
+'''
+
 class Solution2(object): # Time:O(n) Space:O(n)
 
 	def climbStairsHelper(self, i, n, memo):
@@ -70,7 +98,7 @@ class Solution2(object): # Time:O(n) Space:O(n)
 		memo = [0] * (n + 1)
 		return(self.climbStairsHelper(0, n, memo))
 
-class Solution3(object): # Time:O(n) Space:O(n)
+class Solution3(object): # Time:O(n) Space:O(1)
 	def climbStairs(self, n):
 		if n == 1:
 			return 1

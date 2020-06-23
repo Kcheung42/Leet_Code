@@ -63,7 +63,7 @@ class Solution(object):
                 if left_child <= n-1 and root[left_child]:
                     s_1.append((left_child, root[left_child]))
             if len(temp) > 0:
-                result.append(temp)
+            result.append(temp)
         return result
 
 
@@ -77,7 +77,6 @@ class Solution2(object):
         if not root: return []
         res = []
         temp = []
-        stack = [(0, root[0])]
         n = len(root)
         q = queue.Queue()
         q.put((0, root[0]))
@@ -126,4 +125,3 @@ class TestSolution1(unittest.TestCase):
 if __name__ == "__main__":
 	unittest.main()
 
-    Hi can you call 347-399-

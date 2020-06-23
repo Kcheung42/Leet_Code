@@ -99,7 +99,7 @@ import unittest
 class TestSolution(unittest.TestCase):
     def test_simple(self):
         s = Solution()
-        words = ["flower","flow","floght"]
+        words = ["flower", "flow", "floght"]
         self.assertEqual(s.longestCommonPrefix(words), "flo")
 
 

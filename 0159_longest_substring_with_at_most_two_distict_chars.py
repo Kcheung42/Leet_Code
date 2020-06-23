@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------
-# Questions:0011_container_with_most_water.py
+# Questions: 0159_longest_substring_with_at_most_two_distict_chars.py
 #------------------------------------------------------------------------------
 '''
 "Given a string s , find the length of the longest substring t
@@ -18,29 +18,37 @@ class Solution:
         if n < 3:
             return n
 
-        # sliding window left and right pointers
-        left = 0
-        right = 0
         # hashmap character -> its rightmost position
-        # in the sliding window
+        # [letter] = index of rightmost position
         hashmap = defaultdict()
 
         max_len = 2
 
-        while right < n:
-            # slidewindow contains less than 3 characters
+        # sliding window left and right pointers
+        left = 0
+        for right in range(n):
             hashmap[s[right]] = right
-            right += 1
-
-            # slidewindow contains 3 characters
             if len(hashmap) == 3:
-                # delete the leftmost character
                 del_idx = min(hashmap.values())
                 del hashmap[s[del_idx]]
-                # move left pointer of the slidewindow
                 left = del_idx + 1
-            cur_len = right - left
+            cur_len = right - left + 1
             max_len = max(max_len, cur_len)
+
+        # while right < n:
+        #     # slidewindow contains less than 3 characters
+        #     hashmap[s[right]] = right
+        #     right += 1
+
+        #     # slidewindow contains 3 characters
+        #     if len(hashmap) == 3:
+        #         # delete the leftmost character
+        #         del_idx = min(hashmap.values())
+        #         del hashmap[s[del_idx]]
+        #         # move left pointer of the slidewindow
+        #         left = del_idx + 1
+        #     cur_len = right - left
+        #     max_len = max(max_len, cur_len)
 
         return max_len
 
@@ -58,6 +66,22 @@ class TestSolution1(unittest.TestCase):
         #substring 'ece'
 
     def test_simple1(self):
+        '''
+        d[letter] = index
+
+        d[c] = 1 (del)
+
+        d[a] = 3
+        d[d] = 4
+
+        0123456
+        ccaabbb
+          l
+            r
+
+        max = r-l
+        max = 5
+        '''
         arr = "ccaabbb"
         s = Solution()
         self.assertEqual(s.lengthOfLongestSubstringTwoDistinct(arr), 5)

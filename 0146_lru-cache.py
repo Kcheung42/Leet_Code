@@ -5,7 +5,21 @@ class DLinkedNode():
         self.prev = None
         self.next = None
 
+
 class LRUCache():
+
+    def __init__(self, capacity):
+        """
+        :type capacity: int
+        """
+        self.cache = {}
+        self.size = 0
+        self.capacity = capacity
+        self.head, self.tail = DLinkedNode(), DLinkedNode()
+
+        self.head.next = self.tail
+        self.tail.prev = self.head
+
     def _add_node(self, node):
         """
         Always add the new node right after head.
@@ -21,10 +35,10 @@ class LRUCache():
         Remove an existing node from the linked list.
         """
         prev = node.prev
-        new = node.next
+        next = node.next
 
-        prev.next = new
-        new.prev = prev
+        prev.next = next
+        next.prev = prev
 
     def _move_to_head(self, node):
         """
@@ -40,18 +54,6 @@ class LRUCache():
         res = self.tail.prev
         self._remove_node(res)
         return res
-
-    def __init__(self, capacity):
-        """
-        :type capacity: int
-        """
-        self.cache = {}
-        self.size = 0
-        self.capacity = capacity
-        self.head, self.tail = DLinkedNode(), DLinkedNode()
-
-        self.head.next = self.tail
-        self.tail.prev = self.head
 
     def get(self, key):
         """

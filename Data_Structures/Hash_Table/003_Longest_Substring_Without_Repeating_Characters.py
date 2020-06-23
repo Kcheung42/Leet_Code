@@ -36,22 +36,30 @@ import unittest
 
 
 class Solution:
+    '''
+    abccabcbb
+    l
+      r
+    d[c] = 0
+    '''
     def lengthOfLongestSubstring(self, s:str) -> int:
         n = len(s)
-        # store the last seen index
-        visited = {}
-        visited[s[0]] = 0
-        max_len = 1
-        start = 0
-        for i in range(1, n):
-            cur_len = i - start
-            prev_index = visited[s[i]] if s[i] in visited else -1
-            visited[s[i]] = i
+        if n == 0:
+            return 0
 
-            #calculaate max len if repeat char found in window
-            if prev_index >= start:
-                max_len = max(cur_len, max_len)
-                start = prev_index + 1
+        # store the last seen index
+        seen = {s[0]: 0}
+        max_len = 1
+        l = 0
+        for r, c in enumerate(s[1:], start=1):
+            cur_len = r - l
+            prev_index = seen.get(c, -1)
+            # calculate max len if repeat char found in window
+            if prev_index >= l:
+                l = prev_index + 1
+            else:
+                cur_len += 1
+            seen[c] = r
             max_len = max(cur_len, max_len)
         return(max_len)
 
@@ -78,7 +86,12 @@ class TestSolution1(unittest.TestCase):
         s = Solution()
         self.assertEqual(s.lengthOfLongestSubstring(str), 5)
 
+    def test_simple4(self):
+        str = "au"
+        s = Solution()
+        self.assertEqual(s.lengthOfLongestSubstring(str), 2)
+
+
 
 if __name__ == "__main__":
     unittest.main()
-

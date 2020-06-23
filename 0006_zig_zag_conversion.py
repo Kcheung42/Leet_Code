@@ -26,13 +26,18 @@ Input: s = "PAYPALISHIRING", numRows = 4
 Output: "PINALSIGYAHRPI"
 Explanation:
 
-P     I    N
-A   L S  I G
-Y A   H R
-P     I
+P     I    N = 0
+A   L S  I G = 1
+Y A   H R    = 2
+P     I      = 3
+
+[P I N]
+[A L S I G]
+[Y A H R]
+[P I]
+
 
 '''
-
 #------------------------------------------------------------------------------
 # Solutions
 #------------------------------------------------------------------------------
@@ -76,12 +81,13 @@ class Solution2:
     def convert(self, s: str, numRows: int) -> str:
         result = ["" for _ in range(min(numRows, len(s)))]
         going_down = False
+        direction = -1
         cur_row = 0
         for c in s:
             result[cur_row] += c
             if cur_row == 0 or cur_row == numRows-1:
-                going_down = not(going_down)
-            cur_row += 1 if going_down else -1
+                direction *= -1
+            cur_row += direction
         return "".join(result)
 
 #------------------------------------------------------------------------------

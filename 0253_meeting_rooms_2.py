@@ -16,7 +16,10 @@ Example 2:
 
 Input: [[7,10],[2,4]]
 Output: 1
-f'''
+
+[15, 20]
+
+'''
 
 # Time = O(nLogn)
 # Space = O(n)
@@ -29,8 +32,7 @@ class Solution:
         start = 0
         end = 1
         for i in intervals:
-            start = i[start]
-            if len(h) > 0 and h[0][0] <= start:
+            if len(h) > 0 and h[0][0] <= i[start]:
                 heapq.heappop(h)
             heapq.heappush(h, [i[end], i[start]])
         return len(h)

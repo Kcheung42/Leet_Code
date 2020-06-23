@@ -4,14 +4,14 @@ from typing import *
 
 # Time = O()
 # Space = O()
-class TrieNode(object):
+class TrieNode:
     def __init__(self):
         self.children = {}
         self.isEnd = False
         self.data = None
         self.rank = 0
 
-class AutocompleteSystem(object):
+class AutocompleteSystem:
     def __init__(self, sentences, times):
         self.root = TrieNode()
         self.keyword = ""
@@ -21,13 +21,14 @@ class AutocompleteSystem(object):
     # Time = O(N)
     def addRecord(self, sentence, hot):
         p = self.root
+        cur = self.root
         for c in sentence:
-            if c not in p.children:
-                p.children[c] = TrieNode()
-            p = p.children[c]
-        p.isEnd = True
-        p.data = sentence
-        p.rank -= hot
+            if c not in cur.children:
+                cur.children[c] = TrieNode()
+            cur = cur.children[c]
+        cur.isEnd = True
+        cur.data = sentence
+        cur.rank -= hot
 
     def dfs(self, root):
         ret = []
@@ -57,7 +58,7 @@ class AutocompleteSystem(object):
         return [item[1] for item in sorted(results)[:3]]
 
 
-# Your AutocompleteSystem object will be instantiated and called as such:
+# Your AutocompleteSystem object  will be instantiated and called as such:
 # obj = AutocompleteSystem(sentences, times)
 # param_1 = obj.input(c)
 class TestSolution1(unittest.TestCase):

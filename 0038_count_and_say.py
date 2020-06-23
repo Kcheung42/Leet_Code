@@ -46,7 +46,6 @@ from typing import *
 #     Time:
 #     Space:
 
-#     [1, E, 11, E, 21, E, 1211, E,  ]
 #     '''
 #     def countAndSay(self, n: int) -> str:
 #         return nextSequence(n, ["1", "E"])
@@ -83,9 +82,29 @@ class Solution(object):
 
         # add a Stopping point for the next sequence
         nextSeq.append('E')
+        print(nextSeq)
 
         return self.nextSequence(n-1, nextSeq)
 
+    def countAndSayIterative(self, n):
+        stack = [(n, ['1', 'E'])]
+        while len(stack) > 0:
+            i, prevSeq = stack.pop()
+            if i == 1:
+                return prevSeq
+
+            prevDigit = prevSeq[0]
+            digitCount = 1
+            nextSeq = []
+            for d in prevSeq[1:]:
+                if d == prevDigit:
+                    digitCount += 1
+                else:
+                    nextSeq.extend([str(digitCount), prevDigit])
+                    prevDigit = d
+                    digitCount = 1
+            nextSeq.append('E')
+            stack.append((i-1, nextSeq))
 
 #------------------------------------------------------------------------------
 # Tests
@@ -96,6 +115,7 @@ class TestSolution(unittest.TestCase):
     def test_simple(self):
         s = Solution()
         s.countAndSay(7)
+        print(s.countAndSay(7))
         self.assertEqual(True, True)
 
 

@@ -23,16 +23,17 @@ class MinHeap():
         while parent >= 0:
             if self.heap[i] < self.heap[parent]:
                 self._swap(i, parent)
-            i = parent
-            parent = (parent - 1) // 2
+                i = parent
+                parent = (parent - 1) // 2
+            else:
+                break
 
     def getSmallerChild(self, i):
         left = 2 * i + 1
         right = 2 * i + 2
         if right > self.currentSize - 1:
             return left
-        else:
-            return left if self.heap[left] < self.heap[right] else right
+        return left if self.heap[left] < self.heap[right] else right
 
     def heapifyDown(self, i):
         while 2 * i + 1 <= self.currentSize - 1:
@@ -42,3 +43,19 @@ class MinHeap():
                 i = smaller
             else:
                 break
+
+import unittest
+
+class TestSolution(unittest.TestCase):
+    def test_simple(self):
+        h = MinHeap()
+        for i in range(10)[::-1]:
+            h.heapPush(i)
+        n = h.currentSize
+        x = [h.heapPop() for _ in range(n)]
+        print(x)
+        self.assertEqual(True, True)
+
+
+unittest.main(verbosity=2)
+

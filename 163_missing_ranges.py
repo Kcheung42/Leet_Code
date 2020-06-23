@@ -5,18 +5,32 @@ from typing import *
 # Time = O(N)
 # Space = O(N)
 class Solution:
-     def findMissingRanges(self, A, lower, upper):
+    '''
+    A = [0,1,3,50,75]
+    lower = 0
+    upper = 100
+
+    set previous to lower -1
+    3 cases:
+    if current is exactly 2 more than previous -> append single number
+    if current is is more than previous + 2 -> append range
+    if current is 1 more than previous -> do nothing
+
+    single number = current-1
+    range = prev+1 -> current-1
+
+    '''
+    def findMissingRanges(self, A, lower, upper):
         result = []
         A.append(upper+1)
 
         pre = lower - 1 #tip: calculate this last
         for i in A:
-           print(f"pre:{pre}")
-           if (i == pre + 2):
-               result.append(str(i-1))
-           elif (i > pre + 2):
-               result.append(str(pre + 1) + "->" + str(i -1))
-           pre = i
+            if (i == pre + 2):
+                result.append(str(i-1))
+            elif (i > pre + 2):
+                result.append(str(pre + 1) + "->" + str(i -1))
+            pre = i
         return result
 
 class TestSolution1(unittest.TestCase):

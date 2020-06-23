@@ -27,6 +27,55 @@ Definition for a binary tree node.
          self.val = x
          self.left = None
          self.right = None
+
+
+left < root.val < 4
+
+            4
+           / \
+         2   5
+        /
+      4
+     / \
+   >2   6
+   / \
+  1   3
+
+
+
+
+left < root.val < right
+   2
+/    \
+1     2
+
+    2
+  /   \
+-inf inf
+at 1 , bounded by -inf < root.val < inf
+
+    2
+   / \
+ >1   3
+  /   \
+-inf inf
+
+at 1 , bounded by -inf < root.val < 2
+
+    2
+  /  \
+ 1    inf
+
+Traps:
+its not enough to know left_child < cur val < right_child.
+          4
+        /  \
+       2    5
+     /  \
+    1    6
+False because although 1 < 2 < 6,  6 also needs to be smaller than 4!
+all roots need to compare 
+
 '''
 
 #------------------------------------------------------------------------------
@@ -41,14 +90,18 @@ class Solution(object):
         :type root: TreeNode
         :rtype: bool
         """
-        def isValidBSTHelper(root, left, right):
+        def isValidBSTHelper(root, minValue, maxValue):
                 if root is None:
                     return True
-                return left < root.val < right and \
-                isValidBSTHelper(root.left, left, root.val) and \
-                isValidBSTHelper(root.right, root.val, right)
+
+                if not(minValue < root.val < maxValue):
+                    return False
+                left = isValidBSTHelper(root.left, minValue, root.val)
+                right = isValidBSTHelper(root.right, root.val, maxValue)
+                return left and right
 
         return isValidBSTHelper(root, float("-inf"), float("inf"))
+
 
 
 #------------------------------------------------------------------------------

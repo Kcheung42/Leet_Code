@@ -91,7 +91,8 @@ class Solution:
             r, c, d = queue.pop(0)
             print(f"r:{r} c:{c} d:{d}")
             for nr, nc in neighbors(r, c):
-                if isFresh(grid[nr][nc]):
+                current_orange = grid[nr][nc]
+                if isFresh(current_orange):
                     grid[nr][nc] = 2
                     queue.append((nr, nc, d+1))
         if any(1 in row for row in grid):

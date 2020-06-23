@@ -2,6 +2,7 @@ import unittest
 from typing import *
 # tags:
 
+
 class Solution1:
     def longestPalindrome(self, s: str) -> str:
         """
@@ -11,14 +12,14 @@ class Solution1:
         """
 
         def isPalindrome(i, j):
-            return all([s[k] == s[j-k+i] for k in range(i,j)])
+            return all([s[k] == s[j-k+i-1] for k in range(i,j)])
 
         n = len(s)
         max_len = 0
         start = -1
         for i in range(n):
             for j in range(i, n):
-                if isPalindrome(i,j):
+                if isPalindrome(i, j + 1):
                     # Calculate the starting point of LPS
                     if (j-i+1) > max_len:
                         start = i
@@ -44,22 +45,33 @@ class Solution2:
             table[i][i] = True
 
         # for substring of len 2
-        for i in range(n-1):
-            if s[i] == s[i+1]:
-                table[i][i+1] = True
+        for i in range(n - 1):
+            if s[i] == s[i + 1]:
+                table[i][i + 1] = True
                 start = i
                 max_len = 2
 
         # for substring of len 3 up to substring of n
         # k is len of substring in question
-        for k in range(3, n+1):
-            for i in range(n+1-k):
-                j = i - 1 + k
-                if table[i+1][j-1] == True and s[i] == s[j]:
+        '''
+          i   j
+          b a b a d
+        b 1 0 1
+        a   1 0
+        b     1 0
+        a       1 0
+        d         1
+
+        T[i][j] = True if S[i:j] is palindrome
+        '''
+        for k in range(3, n + 1):
+            for i in range(n + 1 - k):
+                j = i + k - 1
+                if table[i + 1][j - 1] and s[i] == s[j]:
                     table[i][j] = True
                     if k > max_len:
                         max_len = k
-                        start = i
+                        start = i #optional
         # return max_len
         return {'max_len': max_len, 'start': start}
 

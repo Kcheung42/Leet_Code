@@ -1,9 +1,10 @@
 #------------------------------------------------------------------------------
 # Question: 0096_unique_binary_search_trees.py
 #------------------------------------------------------------------------------
-# tags:
+# tags: #trees #medium
 '''
-Given n, how many structurally unique BST's (binary search trees) that store values 1 ... n?
+Given n, how many structurally unique BST's (binary search trees) that store
+values 1 ... n?
 
 Example:
 
@@ -17,6 +18,22 @@ Given n = 3, there are a total of 5 unique BST's:
      3     2     1      1   3      2
     /     /       \                 \
    2     1         2                 3
+
+
+    4
+   /  \
+  2    5
+ / \    \
+1  3     6
+          \
+           7
+
+
+1234 5 67890
+     r
+
+L = numTrees(i-1)
+R = numTrees(n-i)
 '''
 
 #------------------------------------------------------------------------------
@@ -27,16 +44,16 @@ from test_utils.debug import debug
 
 class SolutionDFS:
     '''
-    Time:
-    Space:
+    Time: O(n^2)
+    Space: O(1)
     '''
     # @debug
     def numTrees(self, n: int) -> int:
         if n <= 1:
             return 1
         res = 0
-        for i in range(1, n+1):
-            left = self.numTrees(i-1)
+        for i in range(1, n + 1):
+            left = self.numTrees(i - 1)
             right = self.numTrees(n - i)
             res += left*right
         return res
@@ -51,8 +68,8 @@ class SolutionDP:
             return 1
         dp = [0] * (n + 1)
         dp[0] = dp[1] = 1
-        for n in range(2, n+1):
-            for i in range(1, n+1):
+        for n in range(2, n + 1):
+            for i in range(1, n +1):
                 left = dp[i - 1]
                 right = dp[n - i]
                 dp[n] += left * right

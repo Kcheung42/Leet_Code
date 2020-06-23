@@ -26,7 +26,6 @@ LL:
                o
            e
 
-
 '''
 
 class Solution:

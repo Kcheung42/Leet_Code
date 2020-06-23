@@ -21,6 +21,14 @@ Output:
   [1,2],
   []
 ]
+
+[1]
+[2]
+[3]
+[1,2]
+[1,3]
+[2,3]
+[1,2,3]
 '''
 
 #------------------------------------------------------------------------------
@@ -31,9 +39,9 @@ from typing import *
 class SolutionTuple:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         def backtrack(first = 0, curr = ()):
-    # if the combination is done
+        # if the combination of len k is done
             if len(curr) == k:
-                output.append(curr)
+                output.append([c for c in curr])
             for i in range(first, n):
                 backtrack(i + 1, curr + (nums[i],))
         output = []
@@ -41,6 +49,7 @@ class SolutionTuple:
         for k in range(1, n + 1):
             backtrack()
         return output
+
 
 class SolutionArray:
     def subsets(self, nums: List[int]) -> List[List[int]]:
@@ -55,8 +64,10 @@ class SolutionArray:
         output = []
         n = len(nums)
         for k in range(1, n + 1):
+            # for subset of length k
             backtrack()
         return output
+
 
 #------------------------------------------------------------------------------
 # Tests
@@ -67,11 +78,12 @@ class TestSolution(unittest.TestCase):
     def test_simple(self):
         nums = [1,2,3]
         s = SolutionTuple()
-        print(s.subsets(nums))
-        self.assertEqual(True, True)
+        self.assertEqual(s.subsets(nums),
+                         [[1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]])
 
         s = SolutionArray()
-        print(s.subsets(nums))
+        self.assertEqual(s.subsets(nums),
+                         [[1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]])
 
 
 unittest.main(verbosity=2)

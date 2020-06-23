@@ -52,8 +52,10 @@ class MinStack:
             self.head = node
 
     def pop(self) -> None:
+        temp = self.head
         if self.head is not None:
             self.head = self.head.next
+        return temp
 
     def top(self) -> int:
         return self.head.val

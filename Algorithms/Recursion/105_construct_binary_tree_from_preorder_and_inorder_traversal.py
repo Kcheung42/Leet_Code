@@ -5,6 +5,7 @@
 '''
 Given inorder and preorder traversal of a tree, construct the binary tree.
 
+
 Note:
 You may assume that duplicates do not exist in the tree.
 
@@ -39,28 +40,23 @@ class TreeNode(object):
 
 class Solution(object):
 
-	def buildTreeRecur(self, preorder, inorder, lookup,  inorder_start, inorder_end, pIndex):
-		if inorder_start > inorder_end:
-			return None
-		node = TreeNode(preorder[pIndex])
-		inIndex = lookup[node.val] #find inorder index of chosen node
-		if inorder_start == inorder_end:
-			return node
-		node.left = self.buildTreeRecur(preorder, inorder,lookup, inorder_start, inIndex-1, pIndex+1)
-		node.right = self.buildTreeRecur(preorder, inorder,lookup, inIndex+1, inorder_end, pIndex+2)
-		return node
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        def helper(start, end):
+            nonlocal cur_root
+            if start >= end:
+                return None
 
-	def buildTree(self, preorder, inorder):
-		"""
-		:type inorder: List[int]
-		:type preorder: List[int]
-		:rtype: TreeNode
-		"""
-		n = len(inorder)
-		lookup = {}
-		for i,val in enumerate(inorder):
-			lookup[val] = i
-		return(self.buildTreeRecur(preorder, inorder,lookup, 0, n-1, 0))
+            r_value = preorder[cur_root]
+            r = TreeNode(r_value)
+            cur_root += 1
+            pivot_idx = lookup[r_value]
+            r.left = helper(start, pivot_idx)
+            r.right = helper(pivot_idx+1, end)
+            return r
+
+        cur_root = 0
+        lookup = {v:i for i,v in enumerate(inorder)}
+        return (helper(0, len(inorder)))
 
 
 #------------------------------------------------------------------------------
@@ -84,6 +80,22 @@ class TestSolution(unittest.TestCase):
         tree = s.buildTree(preorder, inorder)
         in_order(tree, result)
         self.assertEqual(result, [9,3,15,20,7])
+
+    def test_simple2(self):
+        def in_order(root, result):
+            if root is None:
+                return None
+            in_order(root.left, result)
+            result.append(root.val)
+            in_order(root.right, result)
+
+        preorder = [1,2] # use preorer as a list of root nodes to build
+        inorder = [1,2] # store in look up.
+        s = Solution()
+        result = []
+        tree = s.buildTree(preorder, inorder)
+        in_order(tree, result)
+        self.assertEqual(result, [1, 2])
 
 
 unittest.main(verbosity=2)

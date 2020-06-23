@@ -35,37 +35,36 @@ class Solution:
 
     num:[-2,-3,-4,-5]
     '''
-    def maxProduct(self, A):
-        B = A[::-1]
-        for i in range(1, len(A)):
-            A[i] *= A[i - 1] or 1
-            B[i] *= B[i - 1] or 1
-        print(A)
-        print(B)
-        print(A + B)
-        return max(A + B)
-    # def maxProduct(self, nums: List[int]) -> int:
-    #     n  = len(nums)
-    #     if n == 1:
-    #         return nums[0]
-    #     stack = []
-    #     tally = 0
-    #     cur = total = 1
-    #     max_prod = float("-inf")
-    #     for n in nums:
-    #         total *= n
-    #         if n > 0:
-    #             cur *= n
-    #             max_prod = (max(cur, max_prod))
-    #             stack.append(n)
-    #         else:
-    #             tally += 1
-    #             if tally % 2 == 0: #process stack
-    #                 max_prod = (max(total, max_prod))
-    #                 cur = max_prod
-    #             else:
-    #                 cur = 1
-        # return max_prod
+    # def maxProduct(self, A):
+    #     B = A[::-1]
+    #     for i in range(1, len(A)):
+    #         A[i] *= A[i - 1] or 1
+    #         B[i] *= B[i - 1] or 1
+    #     print(A)
+    #     print(B)
+    #     print(A + B)
+    #     return max(A + B)
+
+    def maxProduct(self, nums: List[int]) -> int:
+        n  = len(nums)
+        if n == 1:
+            return nums[0]
+        tally = 0
+        cur = total = 1
+        max_prod = float("-inf")
+        for num in nums:
+            total *= num
+            if num > 0:
+                cur *= num
+                max_prod = (max(cur, max_prod))
+            else:
+                tally += 1
+                if tally % 2 == 0:
+                    max_prod = (max(total, max_prod))
+                    cur = max_prod
+                else:
+                    cur = 1
+        return max_prod
 
 
 #------------------------------------------------------------------------------
@@ -81,7 +80,7 @@ class TestSolution(unittest.TestCase):
 
     def test_simple2(self):
         s = Solution()
-        nums = [2,3,-2,4,5,6]
+        nums = [2,3,-2,4]
         self.assertEqual(s.maxProduct(nums), 6)
 
     def test_simple3(self):

@@ -82,11 +82,11 @@ class Solution:
             if not(root.right and root.left):
                 root = None
             # case 2: One child
-            elif root.right is None:
+            elif root.left and root.right is None:
                 temp = root
                 root = root.left
                 del(temp)
-            elif root.left is None:
+            elif root.right and root.left is None:
                 temp = root
                 root = root.right
                 del(temp)

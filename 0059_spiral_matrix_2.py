@@ -11,24 +11,19 @@ Example:
 Input: 3
 Output:
 [
-
    s     e
  [ 1, 2, 3 ],
  [ 8, 9, 4 ],
  [ 7, 6, 5 ]
 ]
 
-[
    f            l
 i  0    1   2   3
 
 0[ 1,   2,  3 , 4],
 1[ 12, 13, 14 , 5],
-2[ 11, 16, 15 , 6]
-,
-3[ 10, 9, 8 , 7],
-]
-
+2[ 11, 16, 15 , 6],
+3[ 10, 9, 8 ,   7],
 '''
 
 #------------------------------------------------------------------------------
@@ -47,21 +42,18 @@ class Solution:
         start = 1
         for l in range(layers):
             first = l
-            last = n - l - 1
+            last = n - 1 - l
             diff = last-first
-            print(f"first:{first} -> last:{last}")
-            print(f"starting number:{start}")
             for i in range(first, last):
                 offset = i - first
-                print(f"{first}, {i}")
-                print(f"{i}, {last}")
-                print(f"{last}, {last-offset}")
-                print(f"{last-offset}, {first}")
                 m[first][i] = start + offset
-                m[i][last] = start + (1 * diff) + offset
-                m[last][last-offset] = start + (2 * diff) + offset
-                m[last-offset][first] = start + (3 * diff) + offset
-            start = start + diff * 4
+                m[i][last] = m[first][i] + (1 * diff)
+                m[last][last-offset] = m[first][i] + (2 * diff)
+                m[last-offset][first] = m[first][i] + (3 * diff)
+            # two ways to updating start
+            start = m[l+1][first] + 1
+            # start += diff * 4
+
         if n % 2 == 1:
             m[n//2][n//2] = start
         return(m)
@@ -86,6 +78,9 @@ class TestSolution(unittest.TestCase):
                   [ 12, 13, 14 , 5],
                   [ 11, 16, 15 , 6],
                   [ 10, 9, 8 , 7]]
+
+        m = s.generateMatrix(n)
+
         self.assertEqual(s.generateMatrix(n), result)
 
 

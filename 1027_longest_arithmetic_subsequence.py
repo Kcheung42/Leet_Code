@@ -29,6 +29,8 @@ Output: 4
 Explanation: 
 The longest arithmetic subsequence is [20,15,10,5].
 
+
+dp[index][diff] = length of the arithmitic subsequence at index with diff
 '''
 
 #------------------------------------------------------------------------------
@@ -37,12 +39,16 @@ The longest arithmetic subsequence is [20,15,10,5].
 from typing import *
 
 class Solution:
-    '''
-    Time:
-    Space:
-    '''
-    def f():
-        pass
+    def longestArithSeqLength(self, A: List[int]) -> int:
+        dp = {}
+        for i in range(len(A)):
+            for j in range(i + 1, len(A)):
+                diff = A[j] - A[i]
+                print(dp)
+                dp[j, diff] = dp[i,diff] + 1
+                dp[j, diff] = dp.get((i, diff), 1) + 1
+        print(dp)
+        return max(dp.values())
 
 
 #------------------------------------------------------------------------------
@@ -53,7 +59,13 @@ import unittest
 class TestSolution(unittest.TestCase):
     def test_simple(self):
         s = Solution()
-        self.assertEqual(True, True)
+        A = [3,6,9,12]
+        self.assertEqual(s.longestArithSeqLength(A), 4)
+
+    def test_simple2(self):
+        s = Solution()
+        A = [9,4,7,2,10]
+        self.assertEqual(s.longestArithSeqLength(A), 3)
 
 
 unittest.main(verbosity=2)

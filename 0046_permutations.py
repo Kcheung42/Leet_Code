@@ -54,14 +54,14 @@ class Solution:
 
     '''
     def permute(self, nums: List[int]) -> List[List[int]]:
-        def permuteRecur(nums,cur,result):
+        def permuteRecur(nums,cur):
             if nums == []:
                 result.append(cur)
                 return
             for i,v in enumerate(nums):
-                permuteRecur(nums[:i]+nums[i+1:], cur+str(v), result)
+                permuteRecur(nums[:i]+nums[i+1:], cur+str(v))
         result = []
-        permuteRecur(nums, "", result)
+        permuteRecur(nums, "")
         result = [[int(x) for x in r ] for r in result]
         return(result)
 

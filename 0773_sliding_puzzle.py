@@ -81,11 +81,11 @@ class Solution:
 
         def neighbors(r,c):
             neighbors = ((-1, 0), (1,0), (0, -1), (0, 1))
-            for nei in neighbors:
-                new_r = r + nei[0]
-                new_c = c + nei[1]
-                if 0 <= new_r < R and 0 <= new_c < C:
-                    yield new_r, new_c
+            for x, y in neighbors:
+                nr = r + x
+                nc = c + y
+                if 0 <= nr < R and 0 <= nc < C:
+                    yield nr, nc
 
         def get_zero_pos():
             for r in range(R):

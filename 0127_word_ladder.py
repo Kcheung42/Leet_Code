@@ -41,6 +41,11 @@ class Solution(object):
         :type wordList: List[str]
         :rtype: int
         """
+        '''
+        d[h*t] = [hot]
+        d[*ot] = [hot, dot, lot]
+        d[ho*] = [hot]
+        '''
 
         if endWord not in wordList or not endWord or not beginWord or not wordList:
             return 0
@@ -51,36 +56,38 @@ class Solution(object):
         # Dictionary to hold combination of words that can be formed,
         # from any given word. By changing one letter at a time.
         all_combo_dict = defaultdict(list)
-
         for word in wordList:
             for i in range(L):
                 # Key is the generic word
                 # Value is a list of words which have the same intermediate generic word.
+                key = word[:i] + "*" + word[i+1:]
                 all_combo_dict[word[:i] + "*" + word[i+1:]].append(word)
+        print(all_combo_dict)
 
-        # # Queue for BFS
-        queue = collections.deque([(beginWord, 1)])
+        # # Queue for BFS. Each node is (word, level)
+        queue = [(beginWord,1)]
 
         # # Visited to make sure we don't repeat processing same word.
         visited = set([beginWord])
 
         while queue:
-            current_word, level = queue.popleft()
+            current_word, level = queue.pop(0)
             for i in range(L):
                 # Intermediate words for current word
                 intermediate_word = current_word[:i] + "*" + current_word[i+1:]
 
                 # Next states are all the words which share the same intermediate state.
-                for word in all_combo_dict[intermediate_word]:
-                    # If at any point if we find what we are looking for
-                    # i.e. the end word - we can return with the answer.
-                    if word == endWord:
-                        return level + 1
-                    # Otherwise, add it to the BFS Queue. Also mark it visited
-                    if word not in visited:
-                        visited.add(word)
-                        queue.append((word, level + 1))
-                all_combo_dict[intermediate_word] = []
+                if intermediate_word in all_combo_dict:
+                    for word in all_combo_dict[intermediate_word]:
+                        # If at any point if we find what we are looking for
+                        # i.e. the end word - we can return with the answer.
+                        if word == endWord:
+                            return level + 1
+                        # Otherwise, add it to the BFS Queue. Also mark it visited
+                        if word not in visited:
+                            visited.add(word)
+                            queue.append((word, level + 1))
+                    all_combo_dict[intermediate_word] = []
         return 0
 
 class TestSolution1(unittest.TestCase):

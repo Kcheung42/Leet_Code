@@ -43,7 +43,7 @@ from typing import *
 # Space = O(n)
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        def backTrack(nums, pos):
+        def backTrack(nums, pos=0):
             if pos == n - 1:
                 return True
             furthest_jump = min(pos + nums[pos], n-1)
@@ -52,7 +52,7 @@ class Solution:
                     return True
             return False
         n = len(nums)
-        return backTrack(nums,0)
+        return backTrack(nums)
 
 
 class Solution2:
@@ -102,8 +102,8 @@ class TestSolution(unittest.TestCase):
         s = Solution()
         self.assertEqual(s.canJump(nums), True)
 
-        # s2 = Solution2()
-        # self.assertEqual(s2.canJump(nums), True)
+        s2 = Solution2()
+        self.assertEqual(s2.canJump(nums), True)
 
         s = Solution3()
         self.assertEqual(s.canJump(nums), True)

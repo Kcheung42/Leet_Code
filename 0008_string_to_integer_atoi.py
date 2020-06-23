@@ -90,18 +90,18 @@ class Solution:
         sign = set(['+', '-'])
         n = len(s)
         i = 0
+        number = 0
+
         while i < n and s[i] in wspc:
             i += 1
+
         if i < n and (s[i] in sign or s[i].isdigit()):
             if s[i] in sign:
                 sign = s[i]
                 number = self.get_number(s, i+1, sign)
-                return number
             else:
                 number = self.get_number(s, i, None)
-                return number
-        else:
-            return 0
+        return number
 
 
 #------------------------------------------------------------------------------

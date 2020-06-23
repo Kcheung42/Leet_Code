@@ -16,6 +16,7 @@ matrix = [
   [5,1,2,3],
   [9,5,1,2]
 ]
+
 Output: True
 Explanation:
 In the above grid, the diagonals are:
@@ -45,24 +46,21 @@ class Solution:
     Space:
     '''
     def isToeplitzMatrix(self, matrix: List[List[int]]) -> bool:
-        m = len(matrix) #row
-        n = len(matrix[0]) #col
+        R = len(matrix)
+        C = len(matrix[0])
 
         def checkDiagonals(r,c):
             '''returns true if diagnal is all the same number'''
             num = matrix[r][c]
-            r += 1
-            c += 1
-            while r < m and c < n:
+            while r < R and c < C:
                 print(f'({r},{c}):{matrix[r][c]}')
                 if matrix[r][c] != num:
                     return False
                 r += 1
                 c += 1
             return True
-        row = 0
-        col = 0
-        if all([checkDiagonals(0,c) for c in range(n)]) and all([checkDiagonals(r,0) for r in range(1,m)]):
+        if all([checkDiagonals(0, c) for c in range(C)]) and \
+           all([checkDiagonals(r, 0) for r in range(1, R)]):
             return True
         return False
 

@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Questions: 0034_find_first_and_last_position_of_Element_in_sorted_array.py
 #------------------------------------------------------------------------------
-# tags: medium
+# tags: #medium
 '''
 Given an array of integers nums sorted in ascending order, find the
 starting and ending position of a given target value.
@@ -19,48 +19,62 @@ Example 2:
 
 Input: nums = [5,7,7,8,8,10], target = 6
 Output: [-1,-1]
+
+
 '''
 
 #------------------------------------------------------------------------------
 # Solutions
 #------------------------------------------------------------------------------
 from typing import *
+from test_utils.debug import debug
 import functools
+from typing import *
+from testing_utils.debug import debug
 
-def debug(func):
-    """Print the function signature and return value"""
-    @functools.wraps(func)
-    def wrapper_debug(*args, **kwargs):
-        args_repr = [repr(a) for a in args]                      # 1
-        kwargs_repr = [f"{k}={v!r}" for k, v in kwargs.items()]  # 2
-        signature = ", ".join(args_repr + kwargs_repr)           # 3
-        print(f"Calling {func.__name__}({signature})")
-        value = func(*args, **kwargs)
-        print(f"{func.__name__!r} returned {value!r}")           # 4
-        return value
-    return wrapper_debug
 
 # Time = O(log n)
 # Space = O(1)
 class Solution:
-    @debug
-    def find(self, nums, target, left):
-        lo = 0
-        hi = len(nums)
-        while lo < hi:
-            mid = lo + (hi - lo) // 2
-            if nums[mid] > target or (left and nums[mid] == target):
-                hi = mid
-            else:
-                lo = mid+1
-        return lo
-
+    '''
+    Intuition:
+    - search for left and right bounds seprately.
+    - use Binary search on the either left or right.
+      - Binary search:
+        - Iterative approach and Recursive approach
+    '''
     @debug
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        left_idx = self.find(nums, target, True)
-        if left_idx == len(nums) or nums[left_idx] != target:
+
+        @debug
+        def findRecur(lo, hi, left):
+            if lo < hi:
+                mid = lo + (hi-lo) // 2
+                if nums[mid] > target or (left and nums[mid] == target):
+                    return findRecur(lo, mid, left)
+                else:
+                    return findRecur(mid+1, hi, left)
+            return lo
+
+        @debug
+        def findIter(left):
+            lo = 0
+            hi = len(nums)
+            while lo < hi:
+                mid = lo + (hi-lo) // 2
+                if nums[mid] > target or (left and nums[mid] == target):
+                    hi = mid
+                else:
+                    lo = mid+1
+            return lo
+
+        N = len(nums)
+        # left_idx = findIter(left=True)
+        left_idx = findRecur(0, len(nums), left=True)
+        if left_idx == N or nums[left_idx] != target:
             return [-1, -1]
-        right_idx = self.find(nums, target, False) - 1
+        # right_idx = findIter(left=False) - 1
+        right_idx = findRecur(0, len(nums), left=False) - 1
         return [left_idx, right_idx]
 
 
@@ -71,7 +85,9 @@ import unittest
 
 class TestSolution(unittest.TestCase):
     def test_simple(self):
+              # 0 1 2 3 4 5
         nums = [5,7,7,8,8,10]
+                    # l    r
         target = 8
         s = Solution()
         self.assertEqual(s.searchRange(nums, target), [3,4])

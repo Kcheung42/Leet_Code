@@ -52,6 +52,17 @@ class Solution:
                 break
         return True
 
+class Solution2:
+    def validPalindrome(self, s: str) -> bool:
+        n = len(s) // 2
+        i = 0
+        while i < n and s[i] == s[-(i+1)]:
+            i += 1
+        s = s[i:len(s)-i]
+
+        return s[:-1] == s[:-1][::-1] \
+            or s[1:] == s[1:][::-1]
+
 #------------------------------------------------------------------------------
 # Tests
 #------------------------------------------------------------------------------
@@ -63,9 +74,15 @@ class TestSolution(unittest.TestCase):
         s = Solution()
         self.assertEqual(s.validPalindrome(string), True)
 
+        s = Solution2()
+        self.assertEqual(s.validPalindrome(string), True)
+
     def test_simple2(self):
         string = "aabaxa"
         s = Solution()
+        self.assertEqual(s.validPalindrome(string), True)
+
+        s = Solution2()
         self.assertEqual(s.validPalindrome(string), True)
 
 

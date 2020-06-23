@@ -35,57 +35,75 @@ from typing import *
 from test_utils.debug import debug
 import collections
 
+
 class Solution:
+    '''
+    Time:
+    '''
+
+
+#     def canFinish(self, numCourses, prerequisites):
+
+#         # @debug
+#         def dfs(course):
+#             visited[course] = True
+#             for nei in graph[course]:
+#                 if visited[nei] == False:
+#                     dfs(nei)
+#             stack.append(course)
+
+#         visited = [False] * numCourses
+#         graph = collections.defaultdict(set)
+#         stack = []
+#         for course, pre in prerequisites:
+#             graph[course].add(pre)
+#         print(graph)
+
+#         # check for cycles
+
+#         for i in range(numCourses):
+#             if visited[i] == False:
+#                 dfs(i)
+#         print(stack)
+#         return(len(stack) == numCourses)
+
+
+class SolutionLeet:
     '''
     Time:
     Space:
     Intuition: Topological Sort
     '''
-    # def canFinish(self, numCourses, prerequisites):
-
-    #     # @debug
-    #     def TopologicalUtil(node, visited, stack, graph):
-    #         visited[node] = True
-    #         for nei in graph[node]:
-    #             if visited[nei] == False:
-    #                 TopologicalUtil(nei, visited, stack, graph)
-    #         stack.append(node)
-
-    #     visited = [False] * numCourses
-    #     stack = []
-    #     graph = collections.defaultdict(set)
-    #     for course, pre in prerequisites:
-    #         graph[course].add(pre)
-    #     for i in range(numCourses):
-    #         if visited[i] == False:
-    #             TopologicalUtil(i, visited, stack, graph)
-    #     print(f'\nstack: {stack}')
-    #     return(len(stack) == numCourses)
-
     def canFinish(self, numCourses, prerequisites):
-        graph = collections.defaultdict(set)
-        neighbors = collections.defaultdict(set)
+        courses = collections.defaultdict(set)
+        prereqs = collections.defaultdict(set)
         for course, pre in prerequisites:
-            graph[course].add(pre)
-            neighbors[pre].add(course)
-        stack = [n for n in range(numCourses) if not graph[n]]
+            courses[course].add(pre)
+            prereqs[pre].add(course)
 
-        print(f'\ngraph: {graph}')
-        print(f'\nneighbors: {neighbors}')
+        #get all nodes that don't have a prerequisite
+        stack = [n for n in range(numCourses) if not courses[n]]
+        '''
+        0 > 1 > 2
+            ^___|
+        '''
+        print(f'\n courses: {courses}')
+        print(f'\n neighbors: {prereqs}')
         count = 0
+        print(f'\n starting stack: {stack}')
         while stack:
-            # print(f'\nstack: {stack}')
-            node = stack.pop()
-            print(f'\nnode: {node}')
+            print(f'\n stack: {stack}')
+            course = stack.pop()
+            # print(f'\nnode: {course}')
 
             count += 1
             # print(f'\ncount: {count}')
 
-            for n in neighbors[node]:
-                graph[n].remove(node)
-                # print(f'\ngraph: {graph}')
-                if not graph[n]:
-                    stack.append(n)
+            for p in prereqs[course]:
+                courses[p].remove(course)
+                # course does not have any pre-reqs to process
+                if not courses[p]:
+                    stack.append(p)
         # print(f'\ncount: {count}')
 
         return count == numCourses
@@ -96,43 +114,79 @@ class Solution:
 #------------------------------------------------------------------------------
 import unittest
 
+
 class TestSolution(unittest.TestCase):
-    # def test_simple_true(self):
-    #     numsCourses = 2
-    #     prereqs = [[0,1]]
-    #     s = Solution()
-    #     self.assertEqual(s.canFinish(numsCourses, prereqs), True)
+    def test_simple_true(self):
+        numsCourses = 2
+        prereqs = [[0, 1]]
+        s = SolutionLeet()
+        self.assertEqual(s.canFinish(numsCourses, prereqs), True)
 
-    #     prereqs = [[1,0],[0,1]]
-    #     s = Solution()
-    #     self.assertEqual(s.canFinish(numsCourses, prereqs), False)
+        prereqs = [[1, 0], [0, 1]]
+        s = SolutionLeet()
+        self.assertEqual(s.canFinish(numsCourses, prereqs), False)
 
-    # def test_simple_false2(self):
-    #     numsCourses = 2
-    #     prereqs = [[0,1],[1,0]]
-    #     s = Solution()
-    #     self.assertEqual(s.canFinish(numsCourses, prereqs), False)
+    def test_simple_false2(self):
+        '''
+        1 > 0
+        ^___|
+        '''
+        numsCourses = 2
+        prereqs = [[0, 1], [1, 0]]
+        s = SolutionLeet()
+        self.assertEqual(s.canFinish(numsCourses, prereqs), False)
 
-    # def test_two_classes_require_one(self):
-    #     numsCourses = 3
-    #     prereqs = [[0,1],[0,2],[1,2]]
-    #     s = Solution()
-    #     self.assertEqual(s.canFinish(numsCourses, prereqs), True)
+    def test_simple_false3(self):
+        '''
+        0 > 1 > 2
+        ^_______|
+        '''
+        numsCourses = 3
+        prereqs = [[2, 1], [1, 0], [0, 2]]
+        s = SolutionLeet()
+        self.assertEqual(s.canFinish(numsCourses, prereqs), False)
+
+
+    def test_simple_false4(self):
+        '''
+        0 > 1 > 2
+            ^___|
+        '''
+        numsCourses = 3
+        prereqs = [[2, 1], [1, 0], [1, 2]]
+        s = SolutionLeet()
+        self.assertEqual(s.canFinish(numsCourses, prereqs), False)
+
+    def test_two_classes_require_one(self):
+        numsCourses = 3
+        prereqs = [[0, 1], [0, 2], [1, 2]]
+        s = SolutionLeet()
+        self.assertEqual(s.canFinish(numsCourses, prereqs), True)
 
     def test_circular(self):
         '''
         graph:
         0 : []
-        1 : [0]
+        1 : [0,4]
         2 : [1]
         3 : [2]
         4 : [0]
         5 : []
+
+        Cycle exists
+
+                3
+                ^
+        0 > 1 > 2
+        ^   |   |
+        4<--*   |
+        ^-------*
         '''
+
         numsCourses = 6
-        prereqs = [[1,0],[2,1], [3,2], [4,0], [1,4]]
-        s = Solution()
+        prereqs = [[1, 0], [2, 1], [3, 2], [4, 1], [0, 4], [2, 4]]
+        s = SolutionLeet()
         self.assertEqual(s.canFinish(numsCourses, prereqs), False)
 
-unittest.main(verbosity=2)
 
+unittest.main(verbosity=2)

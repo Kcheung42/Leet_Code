@@ -31,17 +31,22 @@ class Solution:
         n = max(len(a), len(b))
         a , b = a.zfill(n), b.zfill(n)
         carry = 0
-        ans = ""
+        res = ""
         for i in range(n-1, -1, -1):
-            cur_sum = int(a[i]) + int(b[i]) + carry
+            # cur_sum = int(a[i]) + int(b[i]) + carry
+            # without using int
+            cur_sum = (a[i] == '1') + (b[i] == '1') + carry
             carry, rem = divmod(cur_sum,2)
-            ans = str(rem) + ans
+            res = str(rem) + res
         if carry:
-            ans = str(carry) + ans
-        return "".join(ans)
+            res = str(carry) + res
+        return res
 
 
 class Solution2:
+    '''
+    without using int
+    '''
     def addBinary(self, a, b):
         res = ''
         carry = 0

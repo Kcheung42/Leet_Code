@@ -48,7 +48,6 @@ class Solution:
             top = stack.pop()
             if top != new_s[i]:
                 return False
-            i += 1
         return True
 
 
@@ -56,9 +55,10 @@ class Solution2:
     def isPalindrome(self, s: str) -> bool:
         new_s = ''.join(c.lower() for c in s if c.isalpha() or c.isdigit())
         i = 0
-        j = len(new_s)
-        print(f'Testing:s[{i}:{j}]:{s[i:j]}')
-        return all([s[k] == s[j-k+i] for k in range(i,j)])
+        start = 0
+        end = len(new_s) - 1
+        print(f'Testing:s[{start}:{end}]:{s[start:end]}')
+        return all([s[k] == s[end-k+start] for k in range(start,end+1)])
 
 #------------------------------------------------------------------------------
 # Tests

@@ -71,6 +71,22 @@ class SolutionIter:
         return result[::-1]
 
 
+class SolutionIter2:
+    def postorderTraversal(self, root: TreeNode) -> List[int]:
+        stack = [root]
+        result = []
+        seen = set([])
+        while stack:
+            root = stack.pop()
+            if root in seen:
+                result.append(root.val)
+            elif root:
+                seen.add(root)
+                stack.append(root)
+                stack.append(root.left)
+                stack.append(root.right)
+        return result
+
 
 #------------------------------------------------------------------------------
 # Tests
@@ -86,6 +102,9 @@ class TestSolution(unittest.TestCase):
         self.assertEqual(s.postorderTraversal(root), [3,2,1])
 
         s = SolutionIter()
+        self.assertEqual(s.postorderTraversal(root), [3,2,1])
+
+        s = SolutionIter2()
         self.assertEqual(s.postorderTraversal(root), [3,2,1])
 
 

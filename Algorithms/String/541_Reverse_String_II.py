@@ -31,6 +31,7 @@ from typing import *
 #               i, j = i + 2*k, j + 2*k
 #       return ''.join(chars)
 
+
 # T:O(n) S:O(n)
 class Solution:
     '''
@@ -38,9 +39,9 @@ class Solution:
     Space:
     '''
     def reverseStr(self, s, k):
-        r = [s[i:i+k] for i in range(0,len(s),k)]
+        r = [s[i:i + k] for i in range(0, len(s), k)]
 
-        for i in range(0,len(r),2):
+        for i in range(0, len(r), 2):
             if len(r[i]) <= k:
                 r[i] = r[i][::-1]
         return ''.join(r)
@@ -51,17 +52,15 @@ class Solution:
 #------------------------------------------------------------------------------
 import unittest
 
+
 class TestSolution(unittest.TestCase):
     def test_simple(self):
-        string ="abcdefg"
+        string = "abcdefg"
         s = Solution()
         self.assertEqual(s.reverseStr(string, 2), "bacdfeg")
 
 
 unittest.main(verbosity=2)
-
-
-
 
 # s = Solution()
 # print(s.reverseStr("abcdefghijkl", 5))
